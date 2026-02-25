@@ -1,0 +1,27 @@
+# Walkthrough - Verify Hover Button Fix in Mission Control
+
+I have updated the "Mission Control" page (Scout Scan Dashboard) to fix the hover button clipping issues on Uploaded SBOM cards. The buttons are now "Analyze" and "DETAILS", styled simply and positioned to avoid layout shifts.
+
+## Verification Steps
+
+1.  **Navigate to Mission Control**
+    - Go to the Scout Module.
+    - Navigate to the main "Scan" dashboard (often the default view or "Mission Control").
+    - Locate the **Uploaded SBOM** section (usually under "Archive" or similar, displaying cards for uploads like `client1.0`).
+
+2.  **Test Hover Interaction**
+    - Hover your mouse over one of the SBOM cards.
+    - **Observe**:
+        - The "Analyze" and "DETAILS" buttons should appear gracefully.
+        - They should appear at the bottom right of the card.
+        - The date (e.g., "10/25/2023") should stay visible on the left or be covered cleanly if intended, but the buttons *must not* cause the card to expand or content to jump ("clipping").
+        - The buttons should be simple text buttons (Ghost variant), readable and clickable.
+
+3.  **Click Test**
+    - Click "DETAILS". Ensure it navigates to the details page.
+    - Click "Analyze". Ensure it triggers the analyze action (console log or actual action).
+
+## Changes Made
+- Modified [scan/page.tsx](file:///C:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/scan/page.tsx) (`ParsedUploadedSbomCard` or equivalent render loop).
+- Applied `absolute` positioning to the hover button container to overlay the card footer.
+- Standardized buttons to "Analyze" and "DETAILS" with simple ghost styling.

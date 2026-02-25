@@ -1,0 +1,23 @@
+# Portfolio Website Completed
+
+I have successfully built your professional portfolio website using React, Tailwind CSS, and shadcn/ui.
+
+## Key Features
+- **Premium Design**: A sophisticated black and grey theme with white accents.
+- **Responsive Layout**: Works perfectly on mobile, tablet, and desktop.
+- **Resume Integration**: All sections (Summary, Experience, Projects, Skills, Education) are populated with your details.
+- **GitHub Connectivity**: Projects are linked directly to your GitHub repositories.
+- **Interactive UI**: Hover effects, smooth scrolling, and shadcn/ui components.
+
+## How to View Your Website
+1. **Open the Terminal** in your project directory: `C:\Users\Aditya\.gemini\antigravity\scratch\portfolio-website`.
+2. **Run the command**:
+   ```powershell
+   npm run dev
+   ```
+3. **Open the link**: [http://localhost:5173](http://localhost:5173).
+
+## Deployment (Optional)
+If you want to deploy this website, I recommend using **Vercel** or **Netlify**. I have already verified that the project builds successfully (`npm run build`).
+
+Enjoy your new professional showcase!

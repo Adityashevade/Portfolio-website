@@ -1,0 +1,206 @@
+æ%@import "tailwindcss";
+
+@theme {
+    --color-border: hsl(var(--border));
+    --color-input: hsl(var(--input));
+    --color-ring: hsl(var(--ring));
+    --color-background: hsl(var(--background));
+    --color-foreground: hsl(var(--foreground));
+
+    --color-primary: hsl(var(--primary));
+    --color-primary-foreground: hsl(var(--primary-foreground));
+
+    --color-secondary: hsl(var(--secondary));
+    --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+    --color-destructive: hsl(var(--destructive));
+    --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+    --color-muted: hsl(var(--muted));
+    --color-muted-foreground: hsl(var(--muted-foreground));
+
+    --color-accent: hsl(var(--accent));
+    --color-accent-foreground: hsl(var(--accent-foreground));
+
+    --color-popover: hsl(var(--popover));
+    --color-popover-foreground: hsl(var(--popover-foreground));
+
+    --color-card: hsl(var(--card));
+    --color-card-foreground: hsl(var(--card-foreground));
+
+    --radius-lg: var(--radius);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-sm: calc(var(--radius) - 4px);
+}
+
+@layer base {
+    :root {
+        /* Light Theme (Clean Off-White Background for Contrast with White Cards) */
+        --background: 210 20% 98%;
+        /* #f8f9fa - Very subtle blue-grey/white */
+        --foreground: 222 47% 11%;
+        /* Dark blue-grey text for high contrast */
+
+        --card: 0 0% 100%;
+        /* Pure White */
+        --card: 0 0% 100%;
+        /* Pure White */
+        --card-foreground: 222 47% 11%;
+
+        --cursor-dot: 330 81% 60%;
+        /* Vibrant Pink for Light Mode */
+        --cursor-ring: 330 81% 60%;
+        /* Matching Pink Ring */
+
+        --popover: 0 0% 100%;
+        --popover-foreground: 222 47% 11%;
+
+        --primary: 221 83% 53%;
+        /* Vivid Blue */
+        --primary-foreground: 210 40% 98%;
+
+        --secondary: 210 40% 96.1%;
+        --secondary-foreground: 222 47% 11%;
+
+        --muted: 210 40% 96.1%;
+        --muted-foreground: 215 16% 47%;
+
+        --accent: 210 40% 96.1%;
+        /* Light grey for hover states */
+        --accent-foreground: 222 47% 11%;
+
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 210 40% 98%;
+
+        --border: 214 32% 91%;
+        /* Light grey border */
+        --input: 214 32% 91%;
+        --ring: 221 83% 53%;
+
+        --radius: 0.75rem;
+        /* Slightly larger radius for modern look */
+    }
+
+    .dark {
+        /* Kaleido Background: Deep Space Blue/Black */
+        --background: 224 71% 4%;
+        --background: 224 71% 4%;
+        --foreground: 210 40% 98%;
+
+        --cursor-dot: 0 0% 100%;
+        /* White */
+        --cursor-ring: 0 0% 100%;
+        /* White */
+
+        /* Cards: Darker, slightly transparent look handled by util classes, base is deep slate */
+        --card: 222 47% 11%;
+        --card-foreground: 210 40% 98%;
+
+        --popover: 222 47% 11%;
+        --popover-foreground: 210 40% 98%;
+
+        /* Primary: Bright Cyan/Teal */
+        --primary: 189 94% 43%;
+        --primary-foreground: 0 0% 100%;
+
+        --secondary: 217 33% 17%;
+        --secondary-foreground: 210 40% 98%;
+
+        --muted: 217 33% 17%;
+        --muted-foreground: 215 20% 65%;
+
+        --accent: 217 33% 17%;
+        --accent-foreground: 210 40% 98%;
+
+        --destructive: 0 62.8% 30.6%;
+        --destructive-foreground: 210 40% 98%;
+
+        --border: 217 33% 17%;
+        --input: 217 33% 17%;
+        --ring: 189 94% 43%;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+
+    body {
+        @apply bg-background text-foreground font-sans antialiased;
+        font-family: 'Inter', sans-serif;
+    }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+    border-left: 1px solid hsl(var(--border));
+}
+
+::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted-foreground) / 0.5);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.8);
+}
+
+@layer utilities {
+    .transition-smooth {
+        @apply transition-all duration-300 ease-in-out;
+    }
+
+    /* Restoring the utilities that provide subtle depth/interaction without breaking layout */
+    .hover-lift {
+        @apply transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg;
+    }
+
+    .glass-panel {
+        @apply bg-card/80 backdrop-blur-xl border border-border shadow-md dark:shadow-2xl;
+    }
+
+    .kaleido-card {
+        @apply bg-white dark:bg-card border border-border rounded-xl shadow-sm dark:shadow-lg;
+    }
+}π	 *cascade08π	Ω	*cascade08Ω	¬	 *cascade08¬	÷	*cascade08÷	ÿ	 *cascade08ÿ	Î	*cascade08Î	á
+ *cascade08á
+â
+*cascade08â
+ã
+ *cascade08ã
+å
+*cascade08å
+è
+ *cascade08è
+ë
+*cascade08ë
+ù
+ *cascade08ù
+“
+*cascade08“
+·
+ *cascade08·
+‰
+*cascade08‰
+Â
+ *cascade08Â
+Á
+*cascade08Á
+È
+ *cascade08È
+Í
+*cascade08Í
+Î
+ *cascade08Î
+Ú
+*cascade08Ú
+Û
+ *cascade08Û
+°*cascade08°… *cascade08…„*cascade08„È *cascade08Èü*cascade08ü≠ *cascade08≠∞*cascade08∞± *cascade08±≥*cascade08≥µ *cascade08µ∂*cascade08∂∏ *cascade08∏–*cascade08–í *cascade08íî*cascade08îï *cascade08ïó*cascade08óô *cascade08ôõ*cascade08õµ *cascade08µ∑*cascade08∑∏ *cascade08∏∫*cascade08∫º *cascade08ºæ*cascade08æ  *cascade08 ‰*cascade08‰˙ *cascade08˙¸*cascade08¸˛ *cascade08˛ˇ*cascade08ˇ† *cascade08†°*cascade08°§ *cascade08§•*cascade08•® *cascade08®©*cascade08©™ *cascade08™´*cascade08´– *cascade08–”*cascade08”‘ *cascade08‘’*cascade08’ÿ *cascade08ÿŸ*cascade08ŸÒ *cascade08ÒÚ*cascade08Úı *cascade08ıˆ*cascade08ˆ˘ *cascade08˘˙*cascade08˙˚ *cascade08˚¸*cascade08¸ù *cascade08ùü*cascade08ü† *cascade08†¢*cascade08¢• *cascade08•¶*cascade08¶ø *cascade08ø¿*cascade08¿√ *cascade08√ƒ*cascade08ƒ« *cascade08«»*cascade08»… *cascade08… *cascade08 ÷ *cascade08÷Å*cascade08Åó *cascade08óô*cascade08ôö *cascade08öú*cascade08úü *cascade08ü†*cascade08†Ô *cascade08ÔÒ*cascade08ÒÛ *cascade08ÛÙ*cascade08Ùí *cascade08íì*cascade08ìï *cascade08ïó*cascade08óö *cascade08öõ*cascade08õß *cascade08ß»*cascade08»“ *cascade08“”*cascade08”’ *cascade08’◊*cascade08◊⁄ *cascade08⁄€*cascade08€ *cascade08Ú*cascade08ÚÛ *cascade08Ûı*cascade08ı˜ *cascade08˜˘*cascade08˘ì *cascade08ìî*cascade08îô *cascade08ôœ*cascade08œÕ *cascade08Õ*cascade08à *cascade08à˘*cascade08˘Ë$ *cascade08Ë$ˆ$*cascade08ˆ$æ% *cascade0823file:///C:/SCOUTNEW/scout_db/frontend/src/index.css

@@ -1,0 +1,26 @@
+# Persist Dependencies Filters Implementation Plan
+
+## Goal Description
+Ensure that filters on the Dependencies page are persisted when navigating away and coming back. This will be achieved by synchronizing the filter state with the URL query parameters.
+
+## Proposed Changes
+
+### Dependencies Page
+#### [MODIFY] [page.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/dependencies/page.tsx)
+-   **Imports**: Add `useLocation` and `useSearch` from `wouter`.
+-   **State Initialization**:
+    -   Initialize `filters`, `searchQuery`, `viewVulnerableOnly`, and `currentPage` from the URL search string.
+    -   Parse `URLSearchParams` to populate [FilterState](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/dependencies/page.tsx#30-44).
+-   **State Synchronization**:
+    -   Add a `useEffect` hook to update the URL whenever `filters`, `searchQuery`, `viewVulnerableOnly`, or `currentPage` changes.
+    -   Construct the query string from the current state.
+    -   Use `navigate` (from `useLocation`) to update the URL without reloading.
+
+## Verification Plan
+### Manual Verification
+-   Go to Dependencies page.
+-   Apply some filters (e.g., Language: Javascript).
+-   Verify URL updates (e.g., `?language=Javascript`).
+-   Click on a component to go to its detail page.
+-   Click "Back" or navigate back to the Dependencies page.
+-   Verify filters are still applied and URL determines the state.

@@ -1,0 +1,30 @@
+# Add Icons to Dropdowns
+
+## Goal
+Add appropriate icons ("logos") to the "All Actions" dropdown in [AuditLog.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/pages/Audit/AuditLog.tsx) and the "All Statuses" dropdown in [OverrideList.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/pages/Overrides/OverrideList.tsx) to improve visual usability.
+
+## User Review Required
+None.
+
+## Proposed Changes
+
+### Frontend
+#### [MODIFY] [AuditLog.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/pages/Audit/AuditLog.tsx)
+- Import `PlusCircle`, `Edit2`, `RotateCcw`, `ListFilter` from `lucide-react`.
+- Update `SelectItem` components to include these icons next to the text.
+    - All Actions: `ListFilter`
+    - Created: `PlusCircle`
+    - Updated: `Edit2`
+    - Reverted: `RotateCcw`
+
+#### [MODIFY] [OverrideList.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/pages/Overrides/OverrideList.tsx)
+- Import `ShieldCheck`, `RotateCcw`, `ListFilter` from `lucide-react`.
+- Update `SelectItem` components to include these icons.
+    - All Statuses: `ListFilter`
+    - Active: `ShieldCheck`
+    - Reverted: `RotateCcw`
+
+## Verification Plan
+### Manual Verification
+- Navigate to "Audit Log" and open the Action dropdown. Verify icons appear.
+- Navigate to "Overrides" (Mission Control) and open the Status dropdown. Verify icons appear.

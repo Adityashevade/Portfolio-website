@@ -1,0 +1,56 @@
+˜
+import { Moon, Sun } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { useTheme } from "@/components/theme-provider"
+
+export function ModeToggle() {
+    const { setTheme } = useTheme()
+
+    return (
+        <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+                <Button variant="outline" size="icon" className="bg-transparent border-white/10 hover:bg-white/5 data-[state=open]:bg-white/10">
+                    <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 text-foreground" />
+                    <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100 text-foreground" />
+                    <span className="sr-only">Toggle theme</span>
+                </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+                <DropdownMenuItem onClick={() => setTheme("light")}>
+                    Light
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setTheme("dark")}>
+                    Dark
+                </DropdownMenuItem>
+            </DropdownMenuContent>
+        </DropdownMenu >
+    )
+}
+è è¬
+¬˚ ˚ˇ*cascade08
+ˇÜ	 Ü	à	*cascade08
+à	î	 î	ñ	*cascade08
+ñ	´	 ´	Ø	*cascade08
+Ø	Ä
+ Ä
+Ñ
+*cascade08
+Ñ
+ä
+ ä
+é
+*cascade08
+é
+Ø
+ Ø
+≥
+*cascade08
+≥
+˜
+ 2Dfile:///C:/SCOUTNEW/scout_db/frontend/src/components/mode-toggle.tsx

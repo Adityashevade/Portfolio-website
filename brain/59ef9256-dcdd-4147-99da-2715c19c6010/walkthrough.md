@@ -1,0 +1,63 @@
+# Walkthrough - Kaleido UI Redesign
+
+## Recent Changes
+- **Global Theme**: Switched to Deep Space Blue (`#0f111a`) background with Cyan (`#22d3ee`) accents.
+- **Layout**: Implemented a floating "Pill" sidebar navigation and a simplified, transparent header.
+- **Dashboard**: Redesigned to use dark, semi-transparent cards with large KPIs and visual chart placeholders.
+- **Notifications**: Added a functional notification bar with a dropdown.
+- **Theme Support**: Implemented Dark/Light mode toggle in the sidebar.
+
+## Verification
+### Build Status
+- `npm run build` passed with no errors.
+
+### Visual Verification
+- **Theme**: Dark mode is default (Kaleido). Light mode restores clean white/slate aesthetic.
+- **Toggle**: Sidebar button switches themes instantly and persists preference.
+- **Navigation**: Sidebar pills highlight correctly on active routes.
+- **Dashboard**: Stats cards display correct data with the new aesthetic.
+th clear timestamps and action badges.
+   - **Row Expansion**: Clicking arrows expands rows to show a `JsonDiffViewer`, highlighting exactly what changed (`previous` vs `new`).
+   - **Filters**: Filter by Action (CREATED, UPDATED, REVERTED) and search by Actor/Vulnerability.
+   - **Pagination**: Full "Page X of Y" controls with page size limits (10, 20, 30, etc.).
+
+### 2. Override History
+- **Page**: `/overrides/:id/history`
+- **Features**:
+   - **Timeline Component**: A vertical, visual timeline showing the chronological history of an override with icons for different actions.
+
+### 3. Package Aliases
+- **Page**: `/aliases`
+- **Features**:
+   - **Data Model Compliance**: Includes `ticket_reference` for tracking external justifications (e.g., JIRA links).
+   - **Actions**:
+      - **Edit**: Clicking the pencil icon opens the Alias Form in a side sheet, pre-filled with existing data.
+      - **Delete**: Triggers a confirmation dialog.
+      - **Test Lookup**: Built-in tool to verify alias resolution.
+   - **Management**:
+      - **Tag Input**: Enhanced form with chip-based alias entry.
+      - **Import/Export**: Bulk management via JSON files.
+      - **Filtering**: Filter by Ecosystem (npm, pypi, etc.) or search canonical names.
+   - **Visuals**: Displays an external link icon for aliases with ticket references.
+
+### UI Polish (Restored)
+- **Vibrant Dark Theme**: Restored the original dark theme with distinct primary/secondary colors (not just grey/black).
+- **Animation Reversion**: Kept layout stable by removing complex page transitions, but retained subtle hover effects.
+- **Build Verification**: Confirmed `npm run build` passes with the restored theme.
+
+### 4. Interactive Elements
+- **Mission Control Header**: Added a motion effect (scale/glow) and a subtle sound effect on hover using the Web Audio API. 
+
+- **DataTable**: Enhanced with server-side ready pagination props and row expansion capabilities.
+- **Toasts**: Integrated `sonner` for beautiful success/error notifications.
+- **Dialogs**: Reusable `ConfirmDialog` for safety.
+
+## Build Status
+- **Status**: ✅ **PASSED**
+- **Command**: `npm run build`
+- **Result**: Successful build with no lint errors.
+
+## Next Steps
+The frontend is feature-complete.
+- **Run Locally**: `npm run dev`
+- **Deploy**: `npm run build` then serve `dist/`.

@@ -1,0 +1,36 @@
+# Task: Fix npm errors and set up environment
+
+- [x] Analyze [package.json](file:///C:/SCOUTNEW/package.json) files to understand project structure <!-- id: 0 -->
+- [x] Install dependencies in the correct directory (`frontend`) <!-- id: 1 -->
+- [x] Create [package.json](file:///C:/SCOUTNEW/package.json) in root `C:\SCOUTNEW` to forward commands <!-- id: 3 -->
+- [x] Configure `vite.config.ts` with a specific port if needed <!-- id: 4 -->
+- [x] Verify the application runs from root <!-- id: 5 -->
+- [x] Start the backend server on port 8005 <!-- id: 6 -->
+- [/] Verify frontend-backend communication <!-- id: 7 -->
+
+# Task: UI Improvements - Sidebar and Navbar
+
+- [x] Analyze current Sidebar and Navbar implementation (Layout.tsx) <!-- id: 8 -->
+- [x] Design improvements for Navbar (reduce size, improve aesthetics) <!-- id: 9 -->
+- [x] Design improvements for Sidebar (styling, spacing) <!-- id: 10 -->
+- [x] Implement Navbar changes <!-- id: 11 -->
+- [x] Implement Sidebar changes <!-- id: 12 -->
+- [x] Verify UI responsiveness and aesthetics <!-- id: 13 -->
+
+# Task: Light Mode Implementation
+
+- [x] Analyze `mode-toggle.tsx` and `Layout.tsx` <!-- id: 14 -->
+- [x] Remove "System" option from ModeToggle <!-- id: 15 -->
+- [x] Update Sidebar/Navbar styles to support Light Mode <!-- id: 16 -->
+- [x] Verify Light/Dark mode switching and aesthetics <!-- id: 17 -->
+
+# Task: Light Mode Refinement
+
+- [x] Analyze `Dashboard` page and `index.css` variables <!-- id: 18 -->
+- [x] Adjust CSS variables for "fully light" background and white cards <!-- id: 19 -->
+- [x] Style Dashboard cards to match reference (colored icon backgrounds) <!-- id: 20 -->
+- [x] Verify no dark/grey elements remain in light mode <!-- id: 21 -->
+- [x] Fix System Health card background (remove dark gradient) <!-- id: 22 -->
+- [x] Enforce `bg-white` on System Health card to prevent grey appearance <!-- id: 23 -->
+- [x] Make all buttons fully rounded (pill/capsule shape) to match reference <!-- id: 24 -->
+- [ ] Make Search Inputs and Select/Dropdown triggers fully rounded <!-- id: 25 -->

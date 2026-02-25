@@ -1,0 +1,31 @@
+# Navigation & State Preservation Fix
+
+I have investigated and fixed the issue where filter state was being lost when navigating back from detail pages to the list view.
+
+## The Issue
+When a user applied filters on the Vulnerabilities list page and then navigated to a detail page, clicking "Back" would effectively reload the list page from scratch (clearing the URL parameters), causing all filters to be lost.
+
+Similarly, in "Mission Control", navigating to an SBOM detail page and clicking "Back" would redirect to a different page (`/sbom`) instead of returning to Mission Control, causing confusion and potential errors.
+
+## The Fix
+
+### Vulnerability & Dependency Details
+I updated the "Back" button logic in the `vulnerability-detail-client.tsx` component.
+- **Before**: `navigate("/module/scout/vulnerabilities")` - Hard reset.
+- **After**: `window.history.back()` - Preserves history and state.
+
+Verified that `dependency-detail-client.tsx` already uses `window.history.back()`.
+
+### SBOM Details
+I updated the "Back" button logic in `sbom-detail-client.tsx`.
+- **Before**: `<Link href="/module/scout/sbom">Back to SBOMs</Link>` - Incorrect redirection.
+- **After**: `onClick={() => window.history.back()}` - Correctly returns to previous context (e.g., Mission Control).
+
+## Benefits
+- **Persistent Filters**: Users can now drill down into details and return to their filtered list without losing context.
+- **Improved UX**: Preserves the scrolling position and loaded data state.
+- **Correct Navigation**: Users stay within their current workflow (Mission Control vs SBOM List).
+
+## Verification
+1.  **Vulnerabilities**: Apply filters, view details, click Back. Verify filters persist.
+2.  **Mission Control**: Click "View" on an SBOM. Click Back. Verify return to Mission Control without errors.

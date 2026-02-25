@@ -1,0 +1,52 @@
+# Implementation Plan - Align Projects Heading
+
+## Goal Description
+- [x] Style "Search Project" button in Git Scans page
+- [x] Align "Projects" heading with "Git Repository Scans" heading
+- [x] Style Project Cards (Hover effects, Tooltips)
+- [x] Implement UI Design Enhancements (Glassmorphism, Animations, Stats)
+- [x] Fix Lint Errors
+- [x] Style Refresh Button
+
+## Phase 2: User Friendliness & Polish
+- **Provider Filter Pills**: Add toggle buttons next to search to filter projects by provider (All, GitHub, GitLab, Azure).
+- **Skeleton Loading**: Replace spinner with shimmering card skeletons for better perceived performance.
+
+## Phase 3: Unique Experience & Performance
+- **Extract `ProjectCard`**: Move the inline project map rendering to a memoized `ProjectCard` component. This isolates re-renders.
+- **3D Tilt & Spotlight**: Implement a "magnetic" hover effect on the `ProjectCard` using local state (`mousemove`).
+    -   Rotates card based on mouse position.
+    -   Moves a radial gradient (spotlight) to follow the cursor.
+
+## Phase 4: Expansion of 3D Effects (User Request)
+- **Problem**: User wants "3D effect on all buttons and boxes".
+- **Solution**: Create a generic `TiltContainer` component.
+- **Implementation**:
+    -   Extract the tilt logic from `ProjectCard` into `TiltContainer`.
+    -   `TiltContainer` accepts `children`, `className`, and optional scaling factors.
+    -   Refactor `ProjectCard` to use `TiltContainer`.
+    -   Wrap `StatsCards`, `FilterPills`, `RefreshButton`, `ScanButton`, and `AddProjectButton` with `TiltContainer`.
+
+
+## Proposed Changes
+### Git Projects List Component
+#### [MODIFY] [GitProjectsList.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/components/GitProjectsList.tsx)
+- Add a spacer or left margin to the "Projects" heading container.
+- Alternatively, add an invisible icon of the same size (`w-12 h-12`) to the left of "Projects" to ensure perfect alignment.
+- Since it's used in [scan/page.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/scan/page.tsx) as well, I need to check if that page also has a header icon. If so, a universal change is fine.
+    - [scan/page.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/scan/page.tsx) (just checked): It seems [ScanPage](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/scan/page.tsx#79-3089) uses [GitProjectsList](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/components/GitProjectsList.tsx#280-1058) inside it.
+    - If [ScanPage](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/scan/page.tsx#79-3089) ALSO has a header logo, the spacer is correct for both.
+    - If [ScanPage](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/scan/page.tsx#79-3089) does NOT have a header logo, the spacer might look weird.
+
+## Logic Check
+- [git-scans-page-client.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/git-scans/git-scans-page-client.tsx): Has header with icon. Alignment needed.
+- [scan/page.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/scan/page.tsx): I need to verify its header structure.
+
+## Plan Detail
+- [ ] Update [GitProjectsList](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/components/GitProjectsList.tsx#280-1058) to accept `headerClassName` or `alignWithHeader` prop.
+    - [ ] In [GitProjectsList.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/components/GitProjectsList.tsx): apply optional margin/padding to the "Projects" heading based on prop.
+    - [ ] In [git-scans-page-client.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/git-scans/git-scans-page-client.tsx): pass the prop to align with its 48px+gap header icon.
+    - [ ] In [scan/page.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/scan/page.tsx): leave as is (or check if it needs it).
+
+## Verification
+- Visual check on Git Scans page.

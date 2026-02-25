@@ -1,0 +1,32 @@
+# UI Performance Optimization Plan
+
+## Goal
+Eliminate UI lag and ensure smooth interactions by optimizing React rendering performance and data handling.
+
+## Root Causes to Address
+1.  **Expensive Re-renders**: Filtering logic often runs on every render in main pages ([AuditLog](file:///c:/SCOUTNEW/scout_db/frontend/src/pages/Audit/AuditLog.tsx#97-209), [AliasList](file:///c:/SCOUTNEW/scout_db/frontend/src/pages/Aliases/AliasList.tsx#138-448)).
+2.  **Unmemoized Computations**: Derived state (filtered lists) is recalculated even when data hasn't changed.
+3.  **Animation Overhead**: ensure `framer-motion` isn't causing excessive layout thrashing.
+
+## Proposed Changes
+
+### Shared Components
+#### [MODIFY] [DataTable.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/components/shared/DataTable.tsx)
+- Ensure the table component itself is optimized (e.g., uses `React.memo` if props are stable, though unnecessary if parent memoizes data correctly). *Self-correction: Limiting scope to parent data handling first as that's the usual culprit.*
+
+### Pages
+#### [MODIFY] [AuditLog.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/pages/Audit/AuditLog.tsx)
+- **Memoize filtered items**: Wrap the client-side filtering logic `items.filter(...)` in `useMemo`.
+- **Stable Columns**: Ensure columns are stable (they are currently defined outside, which is good).
+
+#### [MODIFY] [AliasList.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/pages/Aliases/AliasList.tsx)
+- **Memoize filtered items**: Wrap `items.filter(...)` (ecosystem and search) in `useMemo`.
+- **Memoize columns**: Move `columns` definition inside `useMemo` or keep outside if it doesn't depend on state (it depends on [handleEdit](file:///c:/SCOUTNEW/scout_db/frontend/src/pages/Aliases/AliasList.tsx#211-215), so it MUST be validly memoized or stable).
+
+#### [MODIFY] [OverrideList.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/pages/Overrides/OverrideList.tsx)
+- Check `selectedIds` and data processing.
+
+## Verification Plan
+### Manual Verification
+- **Stress Test**: Rapidly type in search boxes and toggle filters.
+- **Observation**: Ensure no UI freezing or stuttering occurs.

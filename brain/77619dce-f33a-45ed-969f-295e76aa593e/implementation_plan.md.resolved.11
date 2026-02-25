@@ -1,0 +1,34 @@
+# Vulnerabilities Page Enhancements Implementation Plan
+
+## Goal Description
+1.  Add logos (Critical, High, Medium, Low icons) to the "Severity" dropdown in the Vulnerabilities page ([vulnerabilities-page-client.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/vulnerabilities/vulnerabilities-page-client.tsx)).
+2.  Persist filter state (Severity, Scan Type, etc.) in the URL key parameters to prevent data loss/crashes when navigating back from a detail view.
+
+## Proposed Changes
+
+### Vulnerabilities Page UI
+#### [MODIFY] [vulnerabilities-page-client.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/vulnerabilities/vulnerabilities-page-client.tsx)
+-   **Helper Function**: Create `getSeverityIcon(severity)` using `lucide-react` icons (e.g., `AlertTriangle`, `Shield`, [Info](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/vulnerabilities/vulnerabilities-page-client.tsx#52-59), `CheckCircle`).
+    -   Critical: Red `AlertTriangle`
+    -   High: Orange `Shield`
+    -   Medium: Yellow [Info](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/vulnerabilities/vulnerabilities-page-client.tsx#52-59) or `AlertTriangle`
+    -   Low: Blue `CheckCircle` or similar.
+-   **Dropdown Update**: Update the `SelectContent` for the Severity dropdown to use this helper and render icons next to the text.
+
+### Vulnerabilities Page Logic
+#### [MODIFY] [page.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/vulnerabilities/page.tsx)
+-   **Imports**: Add `useLocation`, `useSearch` from `wouter`, and `useRef`.
+-   **State Initialization**:
+    -   Initialize state (`filters`, `searchQuery`, `currentPage`) from `window.location.search`.
+-   **State Synchronization**:
+    -   Add `useEffect` to sync state changes to the URL query string.
+
+## Verification Plan
+### Manual Verification
+-   **Logos**: Open Severity dropdown and check for icons.
+-   **Persistence**:
+    -   Apply a severity filter (e.g., Critical).
+    -   Observe URL change.
+    -   Navigate to a detail page (or fake navigation).
+    -   Navigate back.
+    -   Verify filter is still applied and data loads correctly.

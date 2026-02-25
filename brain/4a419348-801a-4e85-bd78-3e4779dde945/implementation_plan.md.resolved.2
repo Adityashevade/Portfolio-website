@@ -1,0 +1,36 @@
+# Implementation Plan - Light Mode Design
+
+The goal is to implement a clean, premium light mode design matching the provided reference and restrict the theme toggle to "Light" and "Dark" only.
+
+## User Review Required
+
+> [!NOTE]
+> The "System" theme option will be removed. The default light theme will be updated to a clean white/gray aesthetic.
+
+## Proposed Changes
+
+### Configuration & Base Styles
+
+#### [MODIFY] [index.css](file:///C:/SCOUTNEW/scout_db/frontend/src/index.css)
+- **Body**: Change `@apply bg-zinc-950 text-zinc-100` to `@apply bg-background text-foreground` to enable dynamic theming.
+- **Light Theme Variables**: Ensure `:root` variables create a clean white background with subtle borders and shadows.
+- **Utilities**: Update `.glass-panel` and `.kaleido-card` to use theme variables (`bg-card`, `border-border`) instead of hardcoded hex values.
+
+### Components
+
+#### [MODIFY] [mode-toggle.tsx](file:///C:/SCOUTNEW/scout_db/frontend/src/components/mode-toggle.tsx)
+- Remove the "System" `DropdownMenuItem`.
+
+#### [MODIFY] [Layout.tsx](file:///C:/SCOUTNEW/scout_db/frontend/src/components/Layout.tsx)
+- **Sidebar**: Replace `bg-[#0f111a]/95` with `bg-background/95` or `bg-card` (backed by CSS variables).
+- **Borders**: Replace `border-white/5` with `border-border`.
+- **Hover Effects**: Replace `hover:bg-white/5` with `hover:bg-accent` and `hover:text-accent-foreground`.
+- **Text**: Ensure text colors are `text-foreground` or `text-muted-foreground` rather than hardcoded colors.
+
+## Verification Plan
+
+### Manual Verification
+- Toggle between Light and Dark mode.
+- Verify that Light mode has a white background, dark text, and visible borders.
+- Verify that Dark mode retains its original "deep space" aesthetic.
+- Verify that the "System" option is gone from the toggle menu.

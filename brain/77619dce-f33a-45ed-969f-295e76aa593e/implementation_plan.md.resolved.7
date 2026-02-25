@@ -1,0 +1,24 @@
+# UI Updates Plan
+
+## Goal Description
+Rename "Risk" to "License liability" on the License Page and "Provider Status" to "Git Integrations" on the Git/Docker Dashboard.
+
+## Proposed Changes
+
+### License Page
+#### [MODIFY] [licenses-page-client.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/licenses/licenses-page-client.tsx)
+- Replace "Risk" with "License Liability" in UI text only.
+    - "Risk Level" -> "License Liability Level"
+    - "High Risk" -> "High License Liability"
+    - "Medium Risk" -> "Medium License Liability"
+    - "Low Risk" -> "Low License Liability"
+    - "All Risks" -> "All License Liabilities"
+
+### Git/Docker Dashboard
+#### [MODIFY] [GitDashboard.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/dashboard/components/GitDashboard.tsx)
+- Rename "Provider Status" card title to "Git Integrations".
+
+## Verification Plan
+### Manual Verification
+- Verify [licenses-page-client.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/licenses/licenses-page-client.tsx) changes by code review to ensure only UI text is changed.
+- Verify [GitDashboard.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/dashboard/components/GitDashboard.tsx) changes by code review.

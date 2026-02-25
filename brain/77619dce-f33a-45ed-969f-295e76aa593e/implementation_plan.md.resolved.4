@@ -1,0 +1,16 @@
+# Implementation Plan - Add Logos to Vulnerability Filters
+
+## Problem
+User wants to see Git, Docker, and SBOM logos in the "Scan Type" filter on the Vulnerabilities page, consistent with the Security Dashboard.
+
+## Investigation
+1.  **Check Dashboard**: Find [client/src/pages/scoutCustomPages/dashboard/page.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/dashboard/page.tsx) (or similar) to see which Lucide icons are used for Git, Docker, and SBOM.
+2.  **Update Vulnerabilities Page**: Modify [vulnerabilities-page-client.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/vulnerabilities/vulnerabilities-page-client.tsx).
+
+## Proposed Changes
+*   **Vulnerabilities Page**:
+    *   Import necessary icons (likely `GitBranch` or `Github`, `Container` or [Docker](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/dependencies/dependencies-page-client.tsx#152-161) icon if available, `FileText` or `FileCode` for SBOM).
+    *   Update `SelectItem` components in the "Scan Type" [Select](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/scan/page.tsx#1011-1016) to include these icons next to the text.
+
+## Verification
+*   Manual verification of the code change.

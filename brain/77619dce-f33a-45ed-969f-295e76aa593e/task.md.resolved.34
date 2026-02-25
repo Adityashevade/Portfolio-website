@@ -1,0 +1,17 @@
+# UI Text Updates
+
+- [x] Rename "File Path" dropdown to "Source File" in [dependencies-page-client.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/dependencies/dependencies-page-client.tsx) <!-- id: 8 -->
+- [x] Persist filters on Dependencies page (fix disappearance on navigation) <!-- id: 9 -->
+- [x] Rename "Provider Status" to "Git Integrations" on Git Dashboard (`GitDashboard.tsx`) <!-- id: 1 -->
+- [x] Verify changes <!-- id: 2 -->
+- [x] Add logos to Severity dropdown in Vulnerabilities page <!-- id: 10 -->
+- [x] Fix crash/error on navigation back (persist filters) in Vulnerabilities page <!-- id: 11 -->
+- [x] Implement 90% width side drawer for Dependencies page (onClick card)
+- [x] Adjust Vulnerabilities page drawer to 90% width
+- [x] Implement 90% width side drawers for "Git Provider" and "Upload SBOM" in Integration Source page
+- [x] Add logos (Good, Critical, Warning) to "All Status" dropdown in Docker SBOMs page
+- [x] Implement 90% width side drawers for "Docker Registry" and "Upload Docker TAR" in Integration Source page
+- [x] Implement 90% width side drawer for "+ Upload SBOM" button in SBOMs page
+- [ ] Verify build passes
+- [x] Convert "Project Group" button to dropdown in Vulnerabilities page <!-- id: 14 -->
+- [x] Add "Excel Report" option to Project Group dropdown <!-- id: 15 -->

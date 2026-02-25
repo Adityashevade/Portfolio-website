@@ -1,0 +1,44 @@
+# Bug Fix: Network Errors and Unified API Services
+
+This plan addresses the network errors in the "aliases", "audit logs", and "override" pages, activates the missing `scout_registry` APIs, and implements a proper WebSocket connection for real-time updates.
+
+## User Review Required
+
+> [!IMPORTANT]
+> I will be merging `scout_registry` routes into the main `scout_db` backend on port 8000 to simplify frontend integration. This ensures all APIs are reachable via a single base URL.
+
+## Proposed Changes
+
+### [Backend] Scout DB Core
+
+#### [MODIFY] [main.py](file:///c:/SCOUTNEW/scout_db/src/scout_db/main.py)
+- Import and include `scout_registry` router.
+- Implement a `/ws` WebSocket endpoint for real-time notifications.
+- Connect to both `scout_db` and `scout_registry` databases in the lifespan manager.
+- Update CORS to allow credentials if needed for WebSockets.
+
+#### [MODIFY] [alias_routes.py](file:///c:/SCOUTNEW/scout_db/src/scout_db/api/alias_routes.py)
+- Update [list_aliases](file:///c:/SCOUTNEW/scout_db/src/scout_db/api/alias_routes.py#54-74) to return a paginated object `{ "items": [...], "total": ... }` to match frontend expectations.
+
+#### [MODIFY] [override_routes.py](file:///c:/SCOUTNEW/scout_db/src/scout_db/api/override_routes.py)
+- Update [list_overrides](file:///c:/SCOUTNEW/scout_db/src/scout_db/api/override_routes.py#48-74) and [get_global_audit](file:///c:/SCOUTNEW/scout_db/src/scout_db/api/override_routes.py#239-261) to return paginated objects `{ "items": [...], "total": ... }`.
+
+### [Frontend] React App
+
+#### [MODIFY] [Notifications.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/components/shared/Notifications.tsx)
+- Add WebSocket client logic to receive real-time notifications instead of using purely mock data.
+
+#### [MODIFY] [App.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/App.tsx)
+- Initialize the WebSocket connection on app startup.
+
+## Verification Plan
+
+### Automated Tests
+- I'll check the health of both database connections via the `/health` endpoint.
+- I'll verify the new paginated structure using `curl` or similar commands.
+
+### Manual Verification
+- **Aliases Page**: Verify the list loads correctly without "Network Error" and pagination works.
+- **Audit Logs Page**: Verify the audit trail is visible.
+- **Overrides Page**: Verify existing overrides are listed.
+- **WebSocket**: Check the browser's Network tab (WebSocket sub-tab) to ensure the connection to `ws://localhost:8000/ws` is "Switching Protocols" (101).

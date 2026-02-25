@@ -1,0 +1,43 @@
+# Light Mode Implementation & Refinement
+
+We have successfully implemented a clean, premium Light Mode for the application and refined the UI to match the reference design.
+
+## Key Changes
+
+### 1. Global Light Theme ([index.css](file:///C:/SCOUTNEW/scout_db/frontend/src/index.css))
+- **Background**: Changed to a subtle off-white (`#f8f9fa`) to provide contrast for white cards.
+- **Cards**: Enforced pure white (`#ffffff`) for all cards using the `.kaleido-card` class.
+- **Text & Colors**: Updated theme variables to ensuring high contrast and vibrant colors (Emerald, Purple, Pink) in light mode.
+
+### 2. Dashboard Component ([Dashboard.tsx](file:///C:/SCOUTNEW/scout_db/frontend/src/pages/Dashboard/Dashboard.tsx))
+- **Semantic Styling**: Replaced hardcoded `text-white` and dark backgrounds with theme-aware utility classes.
+- **System Health Card Fix**: 
+    - Removed the dark gradient overlay that was persistent in light mode.
+    - Standardized the card structure to use the global `.kaleido-card` class, guaranteeing a white background in light mode.
+    - Verified that text and icons remain visible and vibrant.
+
+### 3. Layout & Navigation ([Layout.tsx](file:///C:/SCOUTNEW/scout_db/frontend/src/components/Layout.tsx))
+- **Theme-Aware Sidebar**: The sidebar now adapts to light mode (white/grey) instead of being permanently dark.
+- **Navbar**: Updated to be transparent/light in light mode.
+
+### 4. Mode Toggle ([mode-toggle.tsx](file:///C:/SCOUTNEW/scout_db/frontend/src/components/mode-toggle.tsx))
+- **Simplified Options**: Removed the "System" option, leaving only "Light" and "Dark" for explicit user control.
+
+## Verification
+- **Light Mode**: 
+    - Dashboard background is off-white.
+    - All 4 stats cards are pure white.
+    - "System Health" card is white with green accents (no grey/dark gradient).
+    - Text is dark and readable.
+- **Dark Mode**: 
+    - Preserved the original "deep space" aesthetic with dark blue backgrounds and gradients.
+
+### 5. Backend Stability & Debugging
+- **Resolved "Failed to Load" Error**:
+    - **Port Mismatch Fixed**: Frontend proxy was pointing to port 8005, while backend runs on 8000. Corrected [vite.config.ts](file:///C:/SCOUTNEW/scout_db/frontend/vite.config.ts).
+    - **Router Conflict Resolved**: The backend had overlapping routes where `/api/v1/search` was masked by a generic `/api/v1/vulnerabilities/{id}` route.
+    - **Fix**: Changed vulnerability search route to `/api/v1/vulnerabilities/search` and prioritized it in [main.py](file:///C:/SCOUTNEW/scout_db/src/scout_db/main.py).
+- **Verified API Endpoints**:
+    - `/api/v1/audit`: Returns 200 OK (Audit Logs functional).
+    - `/api/v1/vulnerabilities/status`: Returns 200 OK (Database loaded).
+    - `/api/v1/vulnerabilities/search`: Returns 200 OK with JSON data.

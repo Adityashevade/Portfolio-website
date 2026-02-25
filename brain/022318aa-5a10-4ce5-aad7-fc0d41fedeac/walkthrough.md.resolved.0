@@ -1,0 +1,19 @@
+# Vulnerability Report Scroll Behavior Update
+
+I have updated the [vulnerability-detail-client.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/_detail-pages/vulnerability/vulnerability-detail-client.tsx) page to implement a fixed header scroll layout. This ensures that critical information at the top of the page remains visible while the user explores the detailed vulnerability data.
+
+## Changes
+
+### Fixed Header Layout
+Modified the main page container to use a flex-column layout with a fixed height calculated to fit the viewport (`100vh - 9rem`).
+
+-   **Header**: The top section containing the back button, CVE ID, Severity, and CVSS/EPSS scores is now sticky/fixed.
+-   **Content Area**: The main content area (Exploit Status, Tabs for Details/Components/References, Timeline) now resides in a scrollable container (`overflow-y-auto`).
+
+### File Modified
+-   [client/src/pages/scoutCustomPages/_detail-pages/vulnerability/vulnerability-detail-client.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/_detail-pages/vulnerability/vulnerability-detail-client.tsx)
+
+## Verification
+-   **Scroll Behavior**: Verified that the header stays pinned to the top when scrolling down deeply into the affected components list.
+-   **Layout Integrity**: Ensured no double scrollbars appear and the layout respects the existing application shell.
+-   **Syntax**: Validated the component structure to ensure all JSX tags are properly closed and nested.

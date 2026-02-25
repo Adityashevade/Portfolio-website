@@ -1,0 +1,8 @@
+# UI Text Updates
+
+- [x] Rename "Risk" to- [x] Rename "File Path" dropdown to "Source File" in [dependencies-page-client.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/dependencies/dependencies-page-client.tsx) <!-- id: 8 -->
+- [x] Persist filters on Dependencies page (fix disappearance on navigation) <!-- id: 9 -->
+- [x] Rename "Provider Status" to "Git Integrations" on Git Dashboard ([GitDashboard.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/dashboard/components/GitDashboard.tsx)) <!-- id: 1 -->
+- [x] Verify changes <!-- id: 2 -->
+- [ ] Add logos to Severity dropdown in Vulnerabilities page <!-- id: 10 -->
+- [ ] Fix crash/error on navigation back (persist filters) in Vulnerabilities page <!-- id: 11 -->

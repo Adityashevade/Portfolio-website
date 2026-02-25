@@ -1,0 +1,16 @@
+# BBL Stats 2026 Project Tasks
+
+- [ ] Project Initialization <!-- id: 0 -->
+    - [ ] Explore current directory <!-- id: 1 -->
+    - [ ] Create implementation plan <!-- id: 2 -->
+- [ ] Backend (Python) <!-- id: 3 -->
+    - [ ] Create Python script for BBL player stats (Data Model/Mock Data) <!-- id: 4 -->
+    - [ ] Create API or JSON export mechanism <!-- id: 5 -->
+- [ ] Frontend (React Vite) <!-- id: 6 -->
+    - [ ] Initialize React Vite project <!-- id: 7 -->
+    - [ ] Setup Tailwind CSS (via `npx init` or standard config as per preferences) <!-- id: 8 -->
+    - [ ] Create components for displaying stats <!-- id: 9 -->
+    - [ ] Integrate Python data with Frontend <!-- id: 10 -->
+- [ ] Verification <!-- id: 11 -->
+    - [ ] Verify frontend build <!-- id: 12 -->
+    - [ ] Verify data display <!-- id: 13 -->

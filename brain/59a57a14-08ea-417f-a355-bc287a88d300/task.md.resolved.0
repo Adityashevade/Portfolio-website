@@ -1,0 +1,6 @@
+# Task: Fix TypeScript Error in OverrideList.tsx
+
+- [/] Investigate `OverrideList.tsx` at line 340
+- [ ] Locate `DataTable` component definition
+- [ ] Update `DataTableProps` to include `setRowSelection` and `rowSelection` if missing
+- [ ] Verify fix by checking for TypeScript errors

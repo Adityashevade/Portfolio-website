@@ -1,0 +1,6 @@
+{
+  "artifactType": "ARTIFACT_TYPE_IMPLEMENTATION_PLAN",
+  "summary": "Implement 90% width Side Drawers for Dependencies and Vulnerabilities pages.\\n1. Modify `DependencyDetailClient` to support `onBack` prop.\\n2. Update `DependenciesPageClient` to open drawer instead of navigating.\\n3. Update `VulnerabilitiesPageClient` to open drawer instead of navigating.",
+  "updatedAt": "2026-01-29T05:38:46.914241Z",
+  "version": "13"
+}

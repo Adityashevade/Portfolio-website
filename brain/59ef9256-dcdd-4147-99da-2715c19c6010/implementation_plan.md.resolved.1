@@ -1,0 +1,83 @@
+
+# Implementation Plan - Make Frontend Work
+
+The goal is to fix the build errors and implement the missing features (Audit Log, Package Aliases) as described in [FRONTEND_PLAN.md](file:///c:/SCOUTNEW/scout_db/FRONTEND_PLAN.md).
+
+## User Review Required
+
+> [!IMPORTANT]
+> `shadcn/ui` configuration file `components.json` is missing. I will implement components manually or initialize shadcn if needed, but for now I will assume manual implementation of required components using Tailwind CSS and Radix UI primitives to match existing [button.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/components/ui/button.tsx).
+
+## Proposed Changes
+
+### Build Fixes & Configuration
+
+1.  **Dependencies**: validatethe [package.json](file:///c:/SCOUTNEW/scout_db/package.json) for missing dependencies (e.g., `cmdk` for comboboxes, `date-fns` for dates).
+2.  **Vite Config**: Ensure `@` alias is correctly resolved (it seems correct in [vite.config.ts](file:///c:/SCOUTNEW/scout_db/frontend/vite.config.ts)).
+
+### Components [NEW] & [MODIFY]
+
+I will create the following shared components required by the plan:
+
+#### [NEW] [src/components/ui](file:///c:/SCOUTNEW/scout_db/frontend/src/components/ui)
+-   [table.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/components/ui/table.tsx) (for DataTable)
+-   [input.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/components/ui/input.tsx)
+-   [select.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/components/ui/select.tsx)
+-   [dialog.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/components/ui/dialog.tsx) (for modals)
+-   [badge.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/components/ui/badge.tsx)
+-   [card.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/components/ui/card.tsx)
+-   [textarea.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/components/ui/textarea.tsx)
+-   `form.tsx` (if using react-hook-form)
+
+#### [NEW] [src/components/shared](file:///c:/SCOUTNEW/scout_db/frontend/src/components/shared)
+-   [DataTable.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/components/shared/DataTable.tsx): A reusable table component with sorting and pagination.
+-   `FilterBar.tsx`: For list views.
+-   `StatusBadge.tsx`: Visual indicator for status.
+
+### Features
+
+#### Audit Log
+-   **[NEW] [src/pages/Audit/AuditLog.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/pages/Audit/AuditLog.tsx)**: Main audit log page.
+-   **[NEW] [src/pages/Audit/AuditHistory.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/pages/Audit/AuditHistory.tsx)**: Per-override history.
+
+#### Package Aliases
+-   **[NEW] [src/pages/Aliases/AliasList.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/pages/Aliases/AliasList.tsx)**: List of aliases.
+-   **[NEW] [src/pages/Aliases/AliasForm.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/pages/Aliases/AliasForm.tsx)**: Create/Edit alias.
+
+#### Routing
+-   **[MODIFY] [src/App.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/App.tsx)**: Add routes for `/audit` and `/aliases`.
+-   **[MODIFY] [src/components/Layout.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/components/Layout.tsx)**: Update navigation links.
+
+## Verification Plan
+
+### Automated Tests
+-   Run `npm run build` to ensure the project builds successfully.
+
+### Manual Verification
+-   **Navigation**: Verify links to "Overrides", "Audit Log", and "Aliases" work.
+-   **Pages**:
+    -   Check "Overrides" list and form (already exist, ensure they load).
+    -   Check "Audit Log" loads and displays dummy data or empty state.
+    -   Check "Aliases" loads and displays dummy data or empty state.
+-   **UI**: Verify components look correct and match the design system (Tailwind).
+
+## Network Recovery & Connectivity Fixes [CRITICAL]
+
+### 1. Port Conflict Resolution
+-   **Problem**: Port 8666 was blocked by zombie processes.
+-   **Fix**: Relocated backend to **Port 8667**.
+
+### 2. Direct Connection Mode
+-   **Problem**: Vite Proxy caused persistent `ECONNREFUSED` errors.
+-   **Fix**: Bypassed proxy by setting [src/lib/api.ts](file:///c:/SCOUTNEW/scout_db/frontend/src/lib/api.ts) `baseURL` to `http://127.0.0.1:8667/api/v1`.
+
+### 3. Error Handling
+-   **Problem**: Infinite "Loading..." state disguised errors.
+-   **Fix**: Disabled React Query retries (`retry: false`) to fail fast and show errors immediately.
+-   **Database**: Reduced MongoDB connection timeout from 20s to 2s to prevent startup hangs.
+
+### 4. Verification Check
+-   Fronted talks directly to `127.0.0.1:8667`.
+-   Errors show immediately instead of spinning.
+-   If `500 Internal Server Error`, Backend is UP (but DB is down).
+-   If Page Loads, everything is perfect.

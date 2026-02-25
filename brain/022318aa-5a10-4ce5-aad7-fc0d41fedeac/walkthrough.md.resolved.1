@@ -1,0 +1,26 @@
+# Navigation & State Preservation Fix
+
+I have investigated and fixed the issue where filter state was being lost when navigating back from detail pages to the list view.
+
+## The Issue
+When a user applied filters on the Vulnerabilities list page and then navigated to a detail page, clicking "Back" would effectively reload the list page from scratch (clearing the URL parameters), causing all filters to be lost.
+
+## The Fix
+I updated the "Back" button logic in the [vulnerability-detail-client.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/_detail-pages/vulnerability/vulnerability-detail-client.tsx) component.
+
+### [client/src/pages/scoutCustomPages/_detail-pages/vulnerability/vulnerability-detail-client.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/_detail-pages/vulnerability/vulnerability-detail-client.tsx)
+- **Before**: `navigate("/module/scout/vulnerabilities")` - This caused a hard navigation to the base URL, resetting all filters.
+- **After**: `window.history.back()` - This uses the browser's history API to return to the previous state, preserving scroll position and URL parameters (filters).
+
+### [client/src/pages/scoutCustomPages/_detail-pages/dependency/dependency-detail-client.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/_detail-pages/dependency/dependency-detail-client.tsx)
+- Verified that this component already uses `window.history.back()`, so no changes were needed here.
+
+## Benefits
+- **Persistent Filters**: Users can now drill down into details and return to their filtered list without losing context.
+- **Improved UX**: Preserves the scrolling position and loaded data state (where supported by the browser cache).
+
+## Verification
+1.  Apply filters on the Vulnerabilities page (e.g., Severity: Critical).
+2.  Click on a vulnerability to view details.
+3.  Click the "Back" button in the header.
+4.  You should return to the list with "Severity: Critical" still selected.

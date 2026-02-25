@@ -1,0 +1,39 @@
+# Implement Right-Side Drawer for Project Details
+
+## Goal Description
+The goal is to change the behavior of the Project List in the Mission Control section. Currently, clicking a project expands it inline (accordion style) to show its repositories. The user wants this interaction to open a right-side drawer instead, consistent with the "Add New Project" and "Upload SBOM" experiences.
+
+## User Review Required
+> [!NOTE]
+> This change replaces the inline expansion (accordion) behavior for projects with a drawer.
+
+## Proposed Changes
+
+### Client
+#### [MODIFY] [GitProjectsList.tsx](file:///C:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/components/GitProjectsList.tsx)
+-   Import [Sheet](file:///C:/Users/Aditya/SCOUT_Frontend/client/src/components/ui/sheet.tsx#91-103), [SheetContent](file:///C:/Users/Aditya/SCOUT_Frontend/client/src/components/ui/sheet.tsx#52-55), [SheetHeader](file:///C:/Users/Aditya/SCOUT_Frontend/client/src/components/ui/sheet.tsx#77-89), `SheetTitle`, `SheetDescription` from `@/components/ui/sheet`.
+-   Add state `drawerProject` (string | null) to track the project currently open in the drawer.
+-   Modify the project header `onClick` handler to set `drawerProject` instead of toggling `expandedProjects`.
+-   Remove or comment out the inline expansion rendering block (`{isExpanded && ...}`).
+-   Add a [Sheet](file:///C:/Users/Aditya/SCOUT_Frontend/client/src/components/ui/sheet.tsx#91-103) component at the end of the return statement (or nearby other dialogs).
+    -   `open={!!drawerProject}`
+    -   `onOpenChange={(open) => !open && setDrawerProject(null)}`
+    -   `side="right"`
+    -   Content:
+        -   Header: Project Name and Metadata.
+        -   Body: The list of repositories for that project (migrated from the inline expansion section).
+        -   Include the "Bulk Scan" or selection logic if relevant inside the drawer, or keep global selection working.
+
+## Verification Plan
+
+### Manual Verification
+1.  **Project List Interaction:**
+    -   Go to the "Mission Control" / "Scan" page.
+    -   Scroll to the Project List.
+    -   Click on a project row (e.g., "Test Projects").
+    -   **Expectation**: A right-side drawer opens.
+    -   **Expectation**: The drawer contains the list of repositories for that project.
+2.  **Drawer Functionality:**
+    -   Verify you can select repositories inside the drawer.
+    -   Verify branch selection works inside the drawer.
+    -   Verify closing the drawer works.

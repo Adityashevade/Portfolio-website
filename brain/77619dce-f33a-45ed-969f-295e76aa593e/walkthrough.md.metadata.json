@@ -1,0 +1,5 @@
+{
+  "artifactType": "ARTIFACT_TYPE_WALKTHROUGH",
+  "summary": "Implemented side drawers for Dependency and Vulnerability detail pages, reusing the full detail components.",
+  "updatedAt": "2026-01-29T05:49:57.357002900Z"
+}

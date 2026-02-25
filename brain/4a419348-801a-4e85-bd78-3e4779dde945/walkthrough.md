@@ -1,0 +1,113 @@
+# Light Mode Implementation & Refinement
+
+We have successfully implemented a clean, premium Light Mode for the application and refined the UI to match the reference design.
+
+## Key Changes
+
+### 1. Global Light Theme (`index.css`)
+- **Background**: Changed to a subtle off-white (`#f8f9fa`) to provide contrast for white cards.
+- **Cards**: Enforced pure white (`#ffffff`) for all cards using the `.kaleido-card` class.
+- **Text & Colors**: Updated theme variables to ensuring high contrast and vibrant colors (Emerald, Purple, Pink) in light mode.
+
+### 2. Dashboard Component (`Dashboard.tsx`)
+- **Semantic Styling**: Replaced hardcoded `text-white` and dark backgrounds with theme-aware utility classes.
+- **System Health Card Fix**: 
+    - Removed the dark gradient overlay that was persistent in light mode.
+    - Standardized the card structure to use the global `.kaleido-card` class, guaranteeing a white background in light mode.
+    - Verified that text and icons remain visible and vibrant.
+
+### 3. Layout & Navigation (`Layout.tsx`)
+- **Theme-Aware Sidebar**: The sidebar now adapts to light mode (white/grey) instead of being permanently dark.
+- **Navbar**: Updated to be transparent/light in light mode.
+
+### 4. Mode Toggle (`mode-toggle.tsx`)
+- **Simplified Options**: Removed the "System" option, leaving only "Light" and "Dark" for explicit user control.
+
+## Verification
+- **Light Mode**: 
+    - Dashboard background is off-white.
+    - All 4 stats cards are pure white.
+    - "System Health" card is white with green accents (no grey/dark gradient).
+    - Text is dark and readable.
+- **Dark Mode**: 
+    - Preserved the original "deep space" aesthetic with dark blue backgrounds and gradients.
+
+### 5. Backend Stability & Debugging
+- **Resolved "Failed to Load" Error**:
+    - **Port Mismatch Fixed**: Frontend proxy was pointing to port 8005, while backend runs on 8000. Corrected `vite.config.ts`.
+    - **Router Conflict Resolved**: The backend had overlapping routes where `/api/v1/search` was masked by a generic `/api/v1/vulnerabilities/{id}` route.
+    - **Fix**: Changed vulnerability search route to `/api/v1/vulnerabilities/search` and prioritized it in `main.py`.
+- **Verified API Endpoints**:
+    - `/api/v1/audit`: Returns 200 OK (Audit Logs functional).
+    - `/api/v1/vulnerabilities/status`: Returns 200 OK (Database loaded).
+    - `/api/v1/vulnerabilities/search`: Returns 200 OK with JSON data.
+
+### 6. Final UI Polish & Features
+- **Ecosystem Sync**: Updated dropdowns to include all 12+ ecosystems found in your database (crates.io, packagist, etc.).
+- **Dropdown Fixes**: Forced all dropdowns on the Aliases page to open downwards for better usability.
+- **Alias Logic**: Enforced "Bidirectional" mode for all new aliases to ensure consistent resolution.
+- **Custom Cursor Refinements**:
+    - **Scope**: Limited the custom "dot" cursor to only appear over the Histogram charts.
+    - **Theming**: Implemented a **Pink** theme for Light Mode and **White** for Dark Mode using CSS variables (`index.css`), ensuring perfect visibility.
+
+### 7. Alias Package Suggestions
+- **New Component**: Created `PackageTagInput.tsx` to provide intelligent suggestions for package names during alias creation.
+- **Integration**: Replaced the basic text input in `AliasForm` with this smart component.
+- **Logic**: Fetches package names from the vulnerability database (`/api/v1/vulnerabilities/search`) as the user types.
+
+### 8. Override Form Enhancements
+- **Wider Drawers**: Increased the width of both "Create Alias" and "Create Override" drawers to **90%** of the screen (`w-[90%]`) for better usability.
+- **Editable Vulnerability Form**:
+    - **New Component**: Created `VulnerabilityEditForm.tsx` to replace the read-only details card.
+    - **Features**: Users can now directly edit Summary, Details, Severity, References, and Affected Packages.
+    - **Smart Logic**: The form automatically calculates differences between original and edited data and sends only the necessary override operations to the backend.
+- **Simplified Workflow**: Removed the manual "Fields" section (Add Field button) from the Override Form, relying entirely on the intuitive edit form.
+
+### 9. Search & Interaction Improvements (New)
+- **Search Persistence (Overrides)**: 
+    - Fixed a bug where waiting for search results triggered a full page loading state, causing the search bar to disappear and lose focus. 
+    - Search bar is now persistent, and only the results table shows the loading spinner.
+- **Portal-Based Suggestions**: 
+    - Re-architected `PackageNameInput` to use a `Popover` with `Portal`. 
+    - Suggestions now render at the document root, ensuring they **float on top of all other elements** and are never clipped or overlapped by adjacent cards (like the "Lookup Tester").
+    - Reduced debounce delay to **200ms** for snappier feedback.
+- **Alias Form Modification**:
+    - Removed suggestion dropdowns from the "Aliases" input field in the creation form.
+    - Switched to a manual `TagInput` to allow free-text entry of aliases without interference.
+- **Visual Polish**: 
+    - Fixed z-index layering issues in the Alias Lookup page.
+    - Added solid backgrounds (`bg-popover`) to suggestion cards to prevent transparency bleed-through.
+
+### 10. Audit Log Search Improvements (New)
+- **Hybrid Search Engine**: 
+    - Implemented a smart merged search in `AuditSearchInput`.
+    - **Local Source**: Suggests Actors and Vulnerabilities that appear in the current audit log history.
+    - **Remote Source**: Simultaneously fetches all known Vulnerability IDs from the central database (`/vulnerabilities/search`).
+- **Visual Distinction**:
+    - **Actors**: Displayed with a User icon.
+    - **Vulnerabilities**: Displayed with a Shield icon.
+    - **Database Matches**: Items found in the database but not in the log are explicitly tagged with a "Database" badge.
+- **UX Consistency**: 
+    - Uses the `Portal` pattern to prevent overlapping.
+    - Shows "Searching database..." loader for feedback.
+    - Displays "No matching results found" when appropriate, matching other search inputs.
+
+## Troubleshooting & Fixes
+
+### 1. Override Form "No Changes Detected"
+- **Issue**: The form was failing to detect changes because `selectedVuln` and `editedVuln` shared the same object reference in memory.
+- **Fix**: Implemented deep cloning `JSON.parse(JSON.stringify(vuln))` when initializing the edit state in `OverrideForm.tsx`.
+- **Changes**: [OverrideForm.tsx](file:///C:/SCOUTNEW/scout_db/frontend/src/pages/Overrides/OverrideForm.tsx)
+
+### 2. Backend 500 Error on Overrides
+- **Issue**: The backend was crashing with a `ServerSelectionTimeoutError` because it couldn't connect to MongoDB (Connection Refused).
+- **Fix**: User started the local MongoDB instance.
+- **Enhancement**: Added robust error handling and logging to `scout_db/services/override_service.py` to catch connection errors gracefully and prevent silent failures.
+- **Changes**: [override_service.py](file:///C:/SCOUTNEW/scout_db/src/scout_db/services/override_service.py)
+
+## Future Work (Next 5 Days)
+- **User Authentication**: Implementing login/signup flows.
+- **RBAC**: Restricting sensitive actions (Overrides, Aliases) to admin roles.
+- **Advanced Filtering**: Adding date range pickers to Audit Log.
+- **Export Functionality**: Enabling CSV/JSON export for Audit Logs.
+- **Dashboard Widgets**: Creating interactive charts for vulnerability trends.

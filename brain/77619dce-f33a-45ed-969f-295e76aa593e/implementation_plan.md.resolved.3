@@ -1,0 +1,15 @@
+# Implementation Plan - Remove Pink Background
+
+## Problem
+User reports a pink background on "Dependencies" and "Vulnerabilities" pages (accessed via left sidebar) that needs to be removed.
+
+## Investigation
+1.  **Locate Files**: Find the React components corresponding to these pages. Likely in `client/src/pages/scoutCustomPages/`.
+2.  **Identify Styles**: Search for `bg-pink-*`, `bg-red-*`, or custom styles causing the pink background.
+
+## Proposed Changes
+*   **Dependencies Page** (`dependencies-page-client.tsx`): Change `<div className="border-b border-red-500/20 bg-red-500/5 ...">` to `<div className="border-b border-border bg-background/95 ...">`.
+*   **Vulnerabilities Page** (`vulnerabilities-page-client.tsx`): Change `<div className="... border-red-500/20 bg-red-500/5 ...">` to `<div className="... border-border bg-background/95 ...">`.
+
+## Verification
+*   Review code to ensure no pink/red background classes remain on the main container.

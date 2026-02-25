@@ -1,0 +1,10 @@
+# Navigation State Fix
+
+- [ ] Investigate [dependencies-page-client.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/dependencies/dependencies-page-client.tsx) for state initialization from URL.
+- [ ] Investigate [vulnerabilities-page-client.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/vulnerabilities/vulnerabilities-page-client.tsx) (or equivalent) for state initialization from URL.
+- [ ] Investigate [vulnerability-detail-client.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/_detail-pages/vulnerability/vulnerability-detail-client.tsx) "Back" button implementation.
+- [ ] Investigate [dependency-detail-client.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/_detail-pages/dependency/dependency-detail-client.tsx) "Back" button implementation.
+- [ ] Create implementation plan to ensure URL parameters are correctly synced and restored.
+- [ ] Implement fixes in list pages to strictly respect URL params.
+- [ ] Implement fixes in detail pages to preserve history or navigate back correctly.
+- [ ] Verify the fix.

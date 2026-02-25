@@ -1,0 +1,20 @@
+# Fix TypeScript Error in OverrideList.tsx
+
+Rename the incorrectly named prop [setRowSelection](file:///c:/SCOUTNEW/scout_db/frontend/src/components/shared/DataTable.tsx#52-63) to `onRowSelectionChange` when using the [DataTable](file:///c:/SCOUTNEW/scout_db/frontend/src/components/shared/DataTable.tsx#38-222) component.
+
+## Proposed Changes
+
+### scout_db/frontend/src/pages/Overrides
+
+#### [MODIFY] [OverrideList.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/pages/Overrides/OverrideList.tsx)
+
+Rename `setRowSelection={setRowSelection}` to `onRowSelectionChange={setRowSelection}`.
+
+## Verification Plan
+
+### Automated Tests
+- Run `npm run build` or `npx tsc` in the frontend directory to verify that the TypeScript error is gone.
+- Since `npm run dev` is already running, I can check the terminal output for errors if possible, or trigger a type check.
+
+### Manual Verification
+- Verify that row selection still works in the Overrides list after the change.

@@ -1,0 +1,45 @@
+# Implementation Plan - Editable Vulnerability Form
+
+The user wants to edit vulnerability details directly in a form instead of manually adding field overrides.
+
+## User Review Required
+
+> [!NOTE]
+> I will create a new component `VulnerabilityEditForm` that takes the selected vulnerability as initial data.
+> When the user saves, I will calculate the differences between the original data and the edited form data, and generate the necessary `SET` operations for the backend API.
+
+## Proposed Changes
+
+### Frontend Components
+
+#### [NEW] [VulnerabilityEditForm.tsx](file:///C:/SCOUTNEW/scout_db/frontend/src/components/VulnerabilityEditForm.tsx)
+- **Props**: `initialData` (Vulnerability object), `onChange` (callback with new data).
+- **State**: Local state for all editable fields.
+- **UI**:
+    - **General Info**: CVE ID, Summary, Details (Textareas).
+    - **Metadata**: Published, Modified, Withdrawn dates.
+    - **Severity**: CVSS Score (Number input), Severity (Select), Vector String.
+    - **References**: Dynamic list of URL inputs (Add/Remove).
+    - **Affected Packages**: Dynamic list of cards/rows. Each row has Ecosystem, Package Name, Versions (Badge list/TagInput).
+
+#### [MODIFY] [OverrideForm.tsx](file:///C:/SCOUTNEW/scout_db/frontend/src/pages/Overrides/OverrideForm.tsx)
+- Replace [VulnerabilityDetailsCard](file:///C:/SCOUTNEW/scout_db/frontend/src/components/VulnerabilityDetailsCard.tsx#13-155) with `VulnerabilityEditForm`.
+- **State**: maintain `selectedVuln` (original) and `editedVuln` (current form state).
+- **Submit Logic**:
+    - Compare `selectedVuln` vs `editedVuln`.
+    - Generate `fields` array for the API:
+        - If [summary](file:///C:/SCOUTNEW/scout_db/src/scout_db/api/routes.py#547-563) changed -> `{ path: "summary", operation: "SET", value: newSummary }`
+        - If `affected` changed -> This is complex. I might just send the *entire* `affected` array as a replacement if any part changed, to keep it simple and safe. Or generate specific paths if the backend supports array index addressing (it does, but it's risky if the array order changes). **Decision: Replace entire array if changed.**
+        - Same for `references`.
+
+## Verification Plan
+
+### Manual Verification
+- Open "Create Override".
+- Select a vulnerability (e.g., "log4j").
+- Verify the form populates with data.
+- Edit the Summary.
+- Web Inspector: Check the network payload on "Create Override". Verify it sends `fields: [{ path: "summary", operation: "SET", value: "..." }]`.
+- Add a Reference URL.
+- Verify payload sends the updated references array.
+- Verify the override is created successfully.

@@ -1,0 +1,23 @@
+# Fix Audit Log Filter
+
+## Goal
+Resolve the "Error loading data" issue on the Audit Log page when filtering by action.
+
+## Root Cause
+The [AuditLog.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/pages/Audit/AuditLog.tsx) component sends uppercase values ("CREATED", "UPDATED", "REVERTED") for the `action` query parameter. Use of uppercase values causes a validation error in the backend because the [AuditAction](file:///c:/SCOUTNEW/scout_db/src/scout_db/models/override.py#26-32) enum expects lowercase values ("created", "updated", "reverted").
+
+## Proposed Changes
+
+### Frontend
+#### [MODIFY] [AuditLog.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/pages/Audit/AuditLog.tsx)
+- Update [AuditEntry](file:///c:/SCOUTNEW/scout_db/frontend/src/pages/Audit/AuditLog.tsx#20-30) type definition to use lowercase action values.
+- Update [Select](file:///c:/SCOUTNEW/scout_db/frontend/src/components/shared/DataTable.tsx#52-63) items to use lowercase values (`value="created"`, etc.).
+- Update `Badge` logic to check for `action === "reverted"`.
+- Add a helper to capitalize the action label for display in the Badge.
+
+## Verification Plan
+### Manual Verification
+- Go to Audit Log page.
+- Select "Created" from the filter.
+- Verify data loads correctly without error.
+- Verify Badge displays "reverted" (or "Reverted" if capitalized) correctly with red color.

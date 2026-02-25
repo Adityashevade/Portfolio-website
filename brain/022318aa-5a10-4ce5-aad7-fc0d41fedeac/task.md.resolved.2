@@ -1,0 +1,15 @@
+# Navigation State Fix
+
+- [x] Investigate [dependencies-page-client.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/dependencies/dependencies-page-client.tsx) for state initialization from URL.
+- [x] Investigate [vulnerabilities-page-client.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/vulnerabilities/vulnerabilities-page-client.tsx) (or equivalent) for state initialization from URL.
+- [x] Investigate [vulnerability-detail-client.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/_detail-pages/vulnerability/vulnerability-detail-client.tsx) "Back" button implementation.
+- [x] Investigate [dependency-detail-client.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/_detail-pages/dependency/dependency-detail-client.tsx) "Back" button implementation.
+- [x] Create implementation plan to ensure URL parameters are correctly synced and restored.
+- [x] Implement fixes in list pages to strictly respect URL params.
+- [x] Implement fixes in detail pages to preserve history or navigate back correctly.
+- [x] Verify the fix.
+
+# SBOM Navigation Link Fix
+- [x] Locate [sbom-detail-client.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/_detail-pages/sbom/sbom-detail-client.tsx) back button logic.
+- [x] Replace hardcoded Link with `window.history.back()`.
+- [ ] Verify fix.

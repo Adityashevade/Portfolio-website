@@ -1,0 +1,22 @@
+# Implementation Plan - Root NPM Configuration
+
+The goal is to allow the user to run `npm run dev` (and other scripts) directly from the root directory `C:\SCOUTNEW` without needing to navigate into subdirectories.
+
+## User Review Required
+
+> [!NOTE]
+> This will create a new `package.json` in the root directory. It will forward commands to `scout_db/frontend`.
+
+## Proposed Changes
+
+### Root Directory
+
+#### [NEW] [package.json](file:///C:/SCOUTNEW/package.json)
+- Create a `package.json` file in `C:\SCOUTNEW`.
+- Define scripts (`dev`, `build`, `lint`, etc.) that use `--prefix scout_db/frontend` to forward commands to the frontend application.
+
+## Verification Plan
+
+### Automated Tests
+- Run `npm run dev` from `C:\SCOUTNEW` and verify it starts the Vite server on port 5173.
+- Run `npm run build` from `C:\SCOUTNEW` and verify it builds the frontend.

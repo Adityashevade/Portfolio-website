@@ -1,0 +1,15 @@
+# Task: Fix Network Errors and WebSocket Connection
+
+- [/] Research current state of frontend and backend <!-- id: 0 -->
+    - [/] Check frontend API configuration <!-- id: 1 -->
+    - [ ] Check backend route definitions for aliases, audit logs, and overrides <!-- id: 2 -->
+    - [ ] Investigate WebSocket implementation in frontend and backend <!-- id: 3 -->
+- [ ] Fix Network Errors <!-- id: 4 -->
+    - [ ] Correct API base URLs if mismatched <!-- id: 5 -->
+    - [ ] Ensure backend services are running and accessible <!-- id: 6 -->
+    - [ ] Fix CORS issues if any <!-- id: 7 -->
+- [ ] Implement/Fix WebSocket Connection <!-- id: 8 -->
+    - [ ] Setup WebSocket server in backend <!-- id: 9 -->
+    - [ ] Connect WebSocket client in frontend <!-- id: 10 -->
+- [ ] Verify functionality of Aliases, Audit Logs, and Override pages <!-- id: 11 -->
+- [ ] Final UI/UX Polishing <!-- id: 12 -->

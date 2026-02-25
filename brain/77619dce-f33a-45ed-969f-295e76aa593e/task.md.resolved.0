@@ -1,0 +1,6 @@
+# Mission Control Projects Error
+
+- [ ] Analyze `GitProjectsList.tsx` and [scan/page.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/scan/page.tsx) for project click handlers <!-- id: 0 -->
+- [ ] Identify potential causes for the error (runtime, API, state) <!-- id: 1 -->
+- [ ] Fix the issue <!-- id: 2 -->
+- [ ] Verify the fix <!-- id: 3 -->

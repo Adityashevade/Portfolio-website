@@ -1,0 +1,5 @@
+{
+  "artifactType": "ARTIFACT_TYPE_WALKTHROUGH",
+  "summary": "Walkthrough documenting the fix for the TypeScript error in `OverrideList.tsx`. The fix involved renaming the `setRowSelection` prop to `onRowSelectionChange` and improving type safety with explicit `RowSelectionState` and `useQuery` types.",
+  "updatedAt": "2026-02-24T09:39:55.388622500Z"
+}

@@ -1,0 +1,6 @@
+{
+  "artifactType": "ARTIFACT_TYPE_WALKTHROUGH",
+  "summary": "Fixed the SBOM detail page \"Back\" button to preserve navigation state. Updated the button to use `window.history.back()` instead of linking to a hardcoded URL.",
+  "updatedAt": "2026-01-30T11:16:21.399739400Z",
+  "version": "2"
+}

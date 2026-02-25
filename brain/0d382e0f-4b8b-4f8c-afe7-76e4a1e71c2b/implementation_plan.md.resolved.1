@@ -1,0 +1,25 @@
+# Bug Fix: Network Errors and UI Loading Issues
+
+This plan addresses the network errors and data loading problems in the "aliases", "audit logs", and "override" pages by correcting data format mismatches and unifying the backend services.
+
+## Proposed Changes
+
+### [Backend] Scout DB Core
+
+#### [MODIFY] [main.py](file:///c:/SCOUTNEW/scout_db/src/scout_db/main.py)
+- Integrate `scout_registry` routes into the main `scout_db` backend. This activates all necessary APIs on port 8000.
+- Update initialization to include `scout_registry` database and services.
+
+#### [MODIFY] [alias_routes.py](file:///c:/SCOUTNEW/scout_db/src/scout_db/api/alias_routes.py)
+- Wrap the response of [list_aliases](file:///c:/SCOUTNEW/scout_db/src/scout_db/services/alias_service.py#95-151) in an object with an `items` field to match the frontend's expectation.
+
+#### [MODIFY] [override_routes.py](file:///c:/SCOUTNEW/scout_db/src/scout_db/api/override_routes.py)
+- Wrap the responses of [list_overrides](file:///c:/SCOUTNEW/scout_db/src/scout_db/services/override_service.py#443-542) and [get_global_audit](file:///c:/SCOUTNEW/scout_db/src/scout_db/services/override_service.py#725-785) in objects with an `items` field and a `total` count.
+
+## Verification Plan
+
+### Manual Verification
+- **Aliases Page**: Verify the list loads correctly without "Network Error".
+- **Audit Logs Page**: Verify the audit trail is visible.
+- **Overrides Page**: Verify existing overrides are listed and searchable.
+- **Dashboard**: Ensure counters for overrides and aliases are showing correct numbers instead of 0.

@@ -1,0 +1,48 @@
+# Navigation State Fix Plan
+
+## Goal
+Fix the issue where navigating back from a detail page (Vulnerability or Dependency) clears the filter state of the list page.
+
+## Problem
+The current "Back" buttons in detail pages use `navigate('/module/scout/...')` with a hardcoded path. This pushes a new history entry *without* the query parameters that define the filter state, effectively resetting the list view.
+
+## Proposed Changes
+
+### 1. [vulnerability-detail-client.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/_detail-pages/vulnerability/vulnerability-detail-client.tsx)
+- Change the "Back" button logic.
+- Instead of just `navigate(...)`, checking if we can go back in history.
+- **Proposed Logic**:
+  ```typescript
+  const handleBack = () => {
+    if (onBack) {
+      onBack();
+      return;
+    }
+    // Check if we have history within the app (heuristic)
+    if (window.history.state && window.history.state.idx > 0) {
+      window.history.back();
+    } else {
+      // Fallback if opened directly
+      navigate("/module/scout/vulnerabilities" + window.location.search); // Wait, search might be for *this* page.
+      // Actually, simply using history.back() is usually the standard for "Back" buttons in apps unless deep linking.
+      // For safety:
+      window.history.back();
+    }
+  };
+  ```
+  *Refinement*: Simple `history.back()` might be risky if outside the app. A safer standard pattern in this app context (since it's a SPA) might be just `window.history.back()`.
+
+### 2. [dependency-detail-client.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/_detail-pages/dependency/dependency-detail-client.tsx)
+- Apply the same fix as above.
+
+## Verification
+- **Manual Test**:
+  1. Go to Dependencies/Vulnerabilities list.
+  2. Apply a filter (e.g., "Language: Python").
+  3. URL should update.
+  4. Click on a component/vulnerability to view details.
+  5. Click the "Back" button in the Top Navbar.
+  6. Should return to the list page *with* the filters applied (URL parameters preserved).
+
+## Details
+I will simply replace the `onClick` handler for the Back buttons to use `window.history.back()`. This is the most consistent way to "go back" to the previous state, including scroll position (browser dependent) and URL parameters.

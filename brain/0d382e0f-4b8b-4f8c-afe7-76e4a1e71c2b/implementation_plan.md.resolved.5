@@ -1,0 +1,35 @@
+# Bug Fix: Persistent Network Errors and Connectivity
+
+This plan addresses the "Network Error" reported on the Aliases and Audit Log pages by fixing the mismatch between the Vite proxy configuration and the Axios client, and ensuring the backend is consistently reachable.
+
+## Proposed Changes
+
+### [Frontend] React App
+
+#### [MODIFY] [api.ts](file:///c:/SCOUTNEW/scout_db/frontend/src/lib/api.ts)
+- Change `baseURL` from `http://127.0.0.1:8000/api/v1` to `/api/v1`.
+- This ensures the frontend uses the Vite proxy defined in [vite.config.ts](file:///c:/SCOUTNEW/scout_db/frontend/vite.config.ts), preventing CORS issues and making the setup more portable.
+
+#### [MODIFY] [vite.config.ts](file:///c:/SCOUTNEW/scout_db/frontend/vite.config.ts)
+- Ensure the proxy target is consistent and reliable.
+
+### [Backend] Scout DB Core
+
+#### [MODIFY] [main.py](file:///c:/SCOUTNEW/scout_db/src/scout_db/main.py)
+- Ensure `CORSMiddleware` allows the frontend origin explicitly if needed, although the proxy should handle it.
+- Add a startup check to verify MongoDB connectivity more aggressively.
+
+### [Root] Project Management
+
+#### [MODIFY] [package.json](file:///c:/SCOUTNEW/package.json)
+- Updated `dev:full` script to correctly invoke the ultra-compatible PowerShell script.
+- The script now **forces a valid System32 path** for the session to prevent `ENOENT` errors when spawning `cmd.exe`.
+- Uses `Start-Job` to manage the backend background process in PS 5.1.
+
+## Verification Plan
+
+### Manual Verification
+- **Health Check**: Verify `http://localhost:5173/api/v1/health` (via proxy) returns 200.
+- **Aliases Page**: Verify the list loads correctly via the proxy.
+- **Audit Logs Page**: Verify the audit trail is visible via the proxy.
+- **Dashboard**: Ensure counters are updated correctly.

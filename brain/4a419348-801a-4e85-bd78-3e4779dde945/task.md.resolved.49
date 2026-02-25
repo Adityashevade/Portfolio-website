@@ -1,0 +1,83 @@
+
+# Task: Fix npm errors and set up environment
+
+- [x] Analyze [package.json](file:///C:/SCOUTNEW/package.json) files to understand project structure <!-- id: 0 -->
+- [x] Install dependencies in the correct directory (`frontend`) <!-- id: 1 -->
+- [x] Create [package.json](file:///C:/SCOUTNEW/package.json) in root `C:\SCOUTNEW` to forward commands <!-- id: 3 -->
+- [x] Configure `vite.config.ts` with a specific port if needed <!-- id: 4 -->
+- [x] Verify the application runs from root <!-- id: 5 -->
+- [x] Start the backend server on port 8005 <!-- id: 6 -->
+- [/] Verify frontend-backend communication <!-- id: 7 -->
+
+# Task: UI Improvements - Sidebar and Navbar
+
+- [x] Analyze current Sidebar and Navbar implementation (Layout.tsx) <!-- id: 8 -->
+- [x] Design improvements for Navbar (reduce size, improve aesthetics) <!-- id: 9 -->
+- [x] Design improvements for Sidebar (styling, spacing) <!-- id: 10 -->
+- [x] Implement Navbar changes <!-- id: 11 -->
+- [x] Implement Sidebar changes <!-- id: 12 -->
+- [x] Verify UI responsiveness and aesthetics <!-- id: 13 -->
+
+# Task: Light Mode Implementation
+
+- [x] Analyze `mode-toggle.tsx` and `Layout.tsx` <!-- id: 14 -->
+- [x] Remove "System" option from ModeToggle <!-- id: 15 -->
+- [x] Update Sidebar/Navbar styles to support Light Mode <!-- id: 16 -->
+- [x] Verify Light/Dark mode switching and aesthetics <!-- id: 17 -->
+
+# Task: Light Mode Refinement
+
+- [x] Analyze `Dashboard` page and `index.css` variables <!-- id: 18 -->
+- [x] Adjust CSS variables for "fully light" background and white cards <!-- id: 19 -->
+- [x] Style Dashboard cards to match reference (colored icon backgrounds) <!-- id: 20 -->
+- [x] Verify no dark/grey elements remain in light mode <!-- id: 21 -->
+- [x] Fix System Health card background (remove dark gradient) <!-- id: 22 -->
+- [x] Enforce `bg-white` on System Health card to prevent grey appearance <!-- id: 23 -->
+- [x] Make all buttons fully rounded (pill/capsule shape) to match reference <!-- id: 24 -->
+- [x] Make Search Inputs and Select/Dropdown triggers fully rounded <!-- id: 25 -->
+- [x] Implement Custom Cursor (Dot/Circle) with theme-aware colors <!-- id: 26 -->
+- [x] Load `scout_db.vulnerabilities.json` in backend and create Search API <!-- id: 28 -->
+- [x] Implement Vulnerability Search Dropdown in Create Override Form <!-- id: 29 -->
+- [x] Implement Vulnerability Search Dropdown in Create Alias Form <!-- id: 30 -->
+- [x] Limit Vulnerability suggestions to max 15 to prevent UI freeze <!-- id: 32 -->
+- [x] Fix duplicate "Vulnerability ID" label in Override Form <!-- id: 33 -->
+- [x] Debug and Fix "Failed to load suggestions" error (Fixed Router Conflict /vulnerabilities/search) <!-- id: 35 -->
+
+# Task: Final UI Polish & Features
+
+- [x] Sync Alias Ecosystems list with database contents (Added 12+ new ecosystems) <!-- id: 36 -->
+- [x] Fix Dropdown Direction (force downwards opening) on Alias Page <!-- id: 37 -->
+- [x] Enforce Bidirectional Aliases (Locked to True) in Alias Form <!-- id: 38 -->
+- [x] Refine Custom Cursor Scope (Limit to Histogram/Charts only) <!-- id: 39 -->
+- [x] Theme Custom Cursor (Pink for Light Mode, White for Dark Mode using CSS variables) <!-- id: 40 -->
+- [x] Fix Build Errors in `custom-cursor.tsx` (JSX syntax) <!-- id: 41 -->
+- [x] Implement Alias Package Suggestions (PackageTagInput) <!-- id: 42 -->
+- [x] Implement Vulnerability Details Card in Override Form <!-- id: 43 -->
+- [x] Show Current Value in Field Path Builder <!-- id: 44 -->
+- [x] Widen Drawers to 90% (Aliases & Overrides) <!-- id: 45 -->
+- [x] Remove "Fields" section from Override Form <!-- id: 46 -->
+
+# Task: Editable Vulnerability Form
+
+- [x] Create `VulnerabilityEditForm` component <!-- id: 47 -->
+    - [x] Inputs for Summary, Details, IDs
+    - [x] Editable list for References
+    - [x] Editable list for Affected Packages
+    - [x] Severity/CVSS inputs
+- [x] Integrate `VulnerabilityEditForm` into `OverrideForm` <!-- id: 48 -->
+- [x] Implement diff logic to generate override patches <!-- id: 49 -->
+
+# Task: Interaction & Suggestion Improvements
+
+- [x] Fix "Search Disappearing" bug in Overrides list (Persistence issue) <!-- id: 50 -->
+- [x] Optimize Package Suggestions (Debounce 200ms, Z-Index fixed) <!-- id: 51 -->
+- [x] Implement Portal-based Suggestions for Lookup Tester (Fixes overlapping) <!-- id: 52 -->
+- [x] Remove Suggestions from "Create Alias" form (Manual entry only) <!-- id: 53 -->
+- [x] Implement Suggestions for Audit Log Search (Actors & Vulnerabilities) <!-- id: 54 -->
+
+# Task: Debugging Override Creation
+
+- [x] Identify cause of "No changes detected" error (Fixed via deep cloning in `OverrideForm`) <!-- id: 55 -->
+- [x] Identify cause of 500 Error (Connection Refused to MongoDB) <!-- id: 56 -->
+- [/] Ensure MongoDB is running and accessible <!-- id: 57 -->
+- [ ] Verify Override Creation successful <!-- id: 58 -->

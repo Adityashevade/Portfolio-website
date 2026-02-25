@@ -1,0 +1,30 @@
+# Walkthrough: Git Scans UX & Performance Polish
+
+I have completed the requested enhancements to the Git Scans page, focusing on performance and a polished user experience, while reverting the experimental "Violet" theme to the original **Pink/Primary** design as requested.
+
+## Final State
+
+### 1. Visual Design (Restored)
+- **Original Theme**: The page now uses the original **Pink (`#FFB6C1`)** and **Primary Blue** color scheme.
+- **Clean Layout**: Removed the experimental "Hero Stats" and background blobs, returning to the clean, compact alignment.
+- **Classic Header**: The "Git Repository Scans" heading is now simple and clean, without the gradient reveal.
+
+### 2. Enhanced Interactions (Retained)
+- **3D Tilt & Spotlight**: The "magnetic" 3D tilt effect is **kept** for interactive elements, but now uses the original pink spotlight color (`255,182,193`).
+    -   **Project Cards**: Tilt naturally on hover with a soft pink glow.
+    -   **Action Buttons**: Refresh, Scan, and Add Project buttons retain their satisfying click/hover physics.
+- **Smooth Transitions**: All hover states (borders, shadows) transition smoothly using the original colors.
+
+### 3. Performance Optimization
+- **Memoized Components**: The project card rendering logic remains extracted into a separate, memoized component (`ProjectCard`).
+- **Reduced Re-renders**: The grid remains responsive and efficient.
+
+### 4. User Friendliness
+- **Provider Filters**: Quick-filter pills (All/GitHub/...) are present and styled to match the original theme.
+- **Skeleton Loading**: Shimmering card skeletons provide a polished loading state.
+
+## Verification Steps
+1.  **Check Colors**: Verify that the pink borders (`#FFB6C1`) and primary blue accents are back.
+2.  **Test Hover**: Hover over a project card. It should still tilt and show a spotlight, but the glow should be pink/white, not violet.
+3.  **Check Header**: The top heading should be standard text, and the stats should be small pills again.
+4.  **Verify Functionality**: Ensure buttons (Refresh, Scan, Filters) work and have the subtle tilt effect.

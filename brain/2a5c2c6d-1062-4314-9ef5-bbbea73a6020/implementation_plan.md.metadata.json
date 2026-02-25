@@ -1,0 +1,6 @@
+{
+  "artifactType": "ARTIFACT_TYPE_IMPLEMENTATION_PLAN",
+  "summary": "I will modify `scan/page.tsx` to fix clipping issues for the hover buttons on the SBOM cards. I will prevent the buttons from affecting the layout of the date and ensure \"Analyze\" and \"DETAILS\" are presented as simple, small accessible buttons overlaying the card bottom on hover.",
+  "updatedAt": "2026-01-21T06:24:10.726620300Z",
+  "version": "3"
+}

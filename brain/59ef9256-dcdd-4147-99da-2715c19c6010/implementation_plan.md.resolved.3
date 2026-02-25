@@ -1,0 +1,35 @@
+
+# Implementation Plan - Frontend Feature Completion
+
+## Goal Description
+Implement the remaining features from [FRONTEND_PLAN.md](file:///c:/SCOUTNEW/scout_db/FRONTEND_PLAN.md) to ensure a complete and polished user experience. This includes adding professional toast notifications, improving the Alias form with a TagInput component, creating a reusable Confirmation Dialog, and adding missing actions (Edit/Delete/Import/Export) to the Alias List page.
+
+## Proposed Changes
+
+### 1. User Feedback (Toast Notifications)
+- **Install `sonner`**: A high-performance toast library.
+- **Update [App.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/App.tsx)**: Add the `<Toaster />` component.
+- **Replace Alerts**: Scan the codebase and replace all `alert()` calls with `toast.success()` or `toast.error()`.
+
+### 2. UI Components
+- **Create `TabInput.tsx`**: A reusable component for entering multiple tags (e.g., for aliases).
+- **Create `ConfirmDialog.tsx`**: A reusable wrapper around `AlertDialog` for dangerous actions.
+
+### 3. Alias Management Features
+- **Update [AliasList.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/pages/Aliases/AliasList.tsx)**:
+    - Add **Import/Export** buttons to the top toolbar.
+    - Add **Edit** and **Delete** actions to the data table rows.
+    - Implement the logic for these actions (using [alias_service.py](file:///c:/SCOUTNEW/scout_db/src/scout_db/services/alias_service.py) endpoints).
+- **Update [AliasForm.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/pages/Aliases/AliasForm.tsx)**:
+    - Replace the dynamic field array for aliases with the new `TagInput` component for a better UX.
+
+## Verification Plan
+
+### Automated Tests
+- Run `tsc` to ensure no type errors.
+- Run `vite build` to verify the build process.
+
+### Manual Verification
+- **Toast**: Trigger an action (e.g., create override) and verify the toast appears.
+- **Alias Form**: Create an alias using the new TagInput and verify it saves correctly.
+- **Alias Actions**: Test Import/Export, Edit, and Confirm Delete flows on the Alias List page.

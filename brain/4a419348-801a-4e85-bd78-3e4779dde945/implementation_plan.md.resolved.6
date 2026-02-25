@@ -1,0 +1,35 @@
+# Implementation Plan - Alias Package Suggestions
+
+The user wants the "Aliases" input in the Alias Form to provide dropdown suggestions from the database, similar to the Vulnerability Search.
+
+## User Review Required
+
+> [!NOTE]
+> We will reuse the existing `/api/v1/vulnerabilities/search` endpoint to find package names. The frontend will extract unique package names from the vulnerability search results to populate the suggestions.
+
+## Proposed Changes
+
+### Frontend Components
+
+#### [NEW] [PackageTagInput.tsx](file:///C:/SCOUTNEW/scout_db/frontend/src/components/shared/PackageTagInput.tsx)
+- Create a new component based on [TagInput](file:///C:/SCOUTNEW/scout_db/frontend/src/components/shared/TagInput.tsx#15-98) and [VulnerabilitySearch](file:///C:/SCOUTNEW/scout_db/frontend/src/components/VulnerabilitySearch.tsx#35-236).
+- **Features**:
+    - Displays selected values as Tags (Badges).
+    - Input field triggers async search to `/api/v1/vulnerabilities/search` on typing.
+    - Displays a dropdown of unique *package names* found in the search results.
+    - Selecting a suggestion adds it as a tag.
+    - Pressing Enter adds the current input as a tag (manual entry).
+
+#### [MODIFY] [AliasForm.tsx](file:///C:/SCOUTNEW/scout_db/frontend/src/pages/Aliases/AliasForm.tsx)
+- Replace [TagInput](file:///C:/SCOUTNEW/scout_db/frontend/src/components/shared/TagInput.tsx#15-98) with the new `PackageTagInput`.
+- Pass the necessary props.
+
+## Verification Plan
+
+### Manual Verification
+- Go to "Aliases" page -> "Create Alias".
+- Type in "log4j" in the "Aliases" field.
+- Verify a dropdown appears with package names (e.g., "org.apache.logging.log4j:log4j-core").
+- Select a suggestion and verify it is added as a tag.
+- Type a manual alias and press Enter, verify it is added.
+- Submit the form and verify aliases are saved.

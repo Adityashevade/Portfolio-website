@@ -1,0 +1,40 @@
+# Implement Right-Side Drawer for Mission Control
+
+## Goal Description
+The goal is to replace the existing modal windows for identifying "Add New Project" and "Upload SBOM Report" in the Mission Control section with right-side drawer components. This will provide a more modern and consistent user experience, aligning with the "Mission Control" aesthetic.
+
+## User Review Required
+> [!NOTE]
+> This change mainly affects the UI/UX of the "Add New Project" and "Upload SBOM" flows. No backend changes are expected.
+
+## Proposed Changes
+
+### Client
+#### [MODIFY] [scan/page.tsx](file:///C:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/scan/page.tsx)
+-   Replace the `Dialog` component controlling `isModalOpen` (Add New Project) with a `Sheet` component.
+    -   Set `side="right"` for the `SheetContent`.
+    -   Ensure `SheetContent` has appropriate width and styling (e.g., `sm:max-w-[600px]`).
+    -   Migrate the existing content (stepper, input fields, connector selection) into the `SheetContent`.
+-   Replace the `Dialog` component controlling `showUploadModal` (Upload SBOM/Archive) with a `Sheet` component.
+    -   Set `side="right"` for the `SheetContent`.
+    -   Migrate the [UploadModal](file:///C:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/scan/page.tsx#3807-4023) component logic to use `Sheet`.
+-   Ensure all state handlers (opening/closing) work correctly with the new `Sheet` components.
+
+## Verification Plan
+
+### Manual Verification
+1.  **Add New Project Drawer:**
+    -   Click the "Add New Project" button in the "Mission Control" section.
+    -   Verify that a right-side drawer opens instead of a modal.
+    -   Test the stepper functionality (Project Name -> Git Provider selection).
+    -   Verify that clicking "Next", "Back", and "Cancel" works as expected.
+    -   Connect to a Git provider (mock or real) if possible to ensure the flow continues correctly.
+2.  **Upload SBOM Drawer:**
+    -   Click the "Upload SBOM File" button.
+    -   Verify that a right-side drawer opens instead of a modal.
+    -   Test the file upload form (Project Group, Target Type, File selection).
+    -   Verify that the "Upload and Scan" button triggers the correct action.
+3.  **Responsiveness:**
+    -   Check the drawer behavior on different screen sizes (though primarily desktop focused).
+4.  **Styling:**
+    -   Ensure the drawer styling matches the application's theme and looks "premium".

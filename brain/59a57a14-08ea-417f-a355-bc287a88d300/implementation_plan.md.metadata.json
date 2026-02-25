@@ -1,0 +1,5 @@
+{
+  "artifactType": "ARTIFACT_TYPE_IMPLEMENTATION_PLAN",
+  "summary": "Implementation plan to fix the TypeScript error in `OverrideList.tsx` by renaming the `setRowSelection` prop to `onRowSelectionChange`.",
+  "updatedAt": "2026-02-24T09:37:06.239499700Z"
+}

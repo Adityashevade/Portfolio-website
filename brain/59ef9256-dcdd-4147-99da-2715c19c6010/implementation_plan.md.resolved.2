@@ -1,0 +1,29 @@
+
+# Implementation Plan - File-Based Data Loading
+
+## Goal Description
+Integrate [scout_db.vulnerabilities2.json](file:///c:/SCOUTNEW/scout_db.vulnerabilities2.json) as a data source for the backend when the MongoDB connection is unavailable. This will provide "real" data to the frontend instead of limited mock data, resolving the user's issue with "no data" and 500 errors.
+
+## Proposed Changes
+
+### Backend Service Layer
+
+#### [NEW] `scout_db/services/data_loader.py`
+-   Create a singleton `DataLoader` class.
+-   On initialization, check for `../scout_db.vulnerabilities2.json` (relative to `src`).
+-   Load the JSON content into memory (list of dicts).
+-   Implement methods to query this in-memory data:
+    -   [get_vulnerability(id)](file:///c:/SCOUTNEW/scout_db/src/scout_db/services/override_service.py#630-647)
+    -   `search_vulnerabilities(query)`
+
+#### [MODIFY] [scout_db/services/override_service.py](file:///c:/SCOUTNEW/scout_db/src/scout_db/services/override_service.py)
+-   Update [get_effective_vulnerability](file:///c:/SCOUTNEW/scout_db/src/scout_db/api/override_routes.py#133-144) and [list_overrides](file:///c:/SCOUTNEW/scout_db/src/scout_db/api/override_routes.py#48-74) to use `DataLoader` as a fallback.
+-   Instead of returning hardcoded mock objects, fetch a matching vulnerability from `DataLoader` and wrap it in a [VulnerabilityOverride](file:///c:/SCOUTNEW/scout_db/src/scout_db/models/override.py#51-70) object if needed (or just return the vuln data for display).
+
+## Verification Plan
+
+### Manual Verification
+1.  Ensure backend is running on port 8002 (or restart it).
+2.  Trigger a frontend refresh.
+3.  Verify that the "Overrides" list now populates with data from the JSON file (e.g. real CVEs).
+4.  Verify that the 500 error is gone.

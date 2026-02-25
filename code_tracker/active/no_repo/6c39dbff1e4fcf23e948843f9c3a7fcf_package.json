@@ -1,0 +1,14 @@
+‚{
+    "name": "scout-root",
+    "private": true,
+    "scripts": {
+        "dev": "powershell -ExecutionPolicy Bypass -File ./scout_start.ps1",
+        "build": "npm run build --prefix scout_db/frontend",
+        "preview": "npm run preview --prefix scout_db/frontend",
+        "lint": "npm run lint --prefix scout_db/frontend",
+        "install:frontend": "npm install --prefix scout_db/frontend"
+    },
+    "devDependencies": {
+        "concurrently": "^8.2.2"
+    }
+}V *cascade08Va *cascade08ad*cascade08de *cascade08eh *cascade08hj*cascade08jk *cascade08kl *cascade08lq*cascade08qr *cascade08rt*cascade08tu *cascade08uv*cascade08vw *cascade08wx*cascade08xz *cascade08z~*cascade08~ *cascade08Å*cascade08Åá *cascade08áå*cascade08åç *cascade08çê*cascade08êì *cascade08ì◊*cascade08◊‚ *cascade082 file:///c:/SCOUTNEW/package.json

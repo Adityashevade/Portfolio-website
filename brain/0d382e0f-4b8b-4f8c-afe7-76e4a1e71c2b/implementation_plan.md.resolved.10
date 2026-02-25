@@ -1,0 +1,35 @@
+# UI Optimization: Refinement of Override Creation Form
+
+This plan details the UI changes to the "Create Override" drawer to minimize scrolling, maximize space usage, and improve the logical layout for non-technical users.
+
+## User Review Required
+
+> [!IMPORTANT]
+> - The drawer width will be kept at 90% (standard wide drawer), but the internal form width will increase from `max-w-2xl` to `max-w-5xl` to use the extra space.
+> - The layout of severity and packages will shift from a single vertical stack to a side-by-side grid.
+
+## Proposed Changes
+
+### [Frontend] React App
+
+#### [MODIFY] [OverrideList.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/pages/Overrides/OverrideList.tsx)
+- Remove `SheetHeader` (redundant title and description) to minimize vertical scrolling.
+
+#### [MODIFY] [OverrideForm.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/pages/Overrides/OverrideForm.tsx)
+- Increase container width from `max-w-2xl` to `max-w-5xl`.
+
+#### [MODIFY] [VulnerabilityEditForm.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/components/VulnerabilityEditForm.tsx)
+- **State Management**:
+    - Reset `currentPage` to `1` when `initialData` changes.
+    - Reset `isAffectedCollapsed` to `false` (uncollapsed) when `initialData` changes.
+    - Reset `isRefsCollapsed` to `false` (uncollapsed) when `initialData` changes.
+- **Layout Restructuring**:
+    - Ensure pagination controls for "Affected Packages" are clear and functional.
+    - Maintain the side-by-side grid but guarantee it starts expanded on new searches.
+
+## Verification Plan
+
+### Manual Verification
+1.  **Search Reset**: Search for a vulnerability ID. Verify "Affected Packages" and "References" are expanded.
+2.  **Pagination Check**: Verify pagination controls show "Page 1 of X" and allow navigating through packages.
+3.  **Cross-Search Persistence**: Navigate to page 2 of packages, then search for a DIFFERENT vulnerability. Verify it resets to page 1 and stays expanded.

@@ -1,0 +1,5 @@
+# UI Text Updates
+
+- [x] Rename "Risk" to "License Liability" on License Page ([licenses-page-client.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/licenses/licenses-page-client.tsx)) <!-- id: 0 -->
+- [x] Rename "Provider Status" to "Git Integrations" on Git Dashboard ([GitDashboard.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/dashboard/components/GitDashboard.tsx)) <!-- id: 1 -->
+- [ ] Verify changes <!-- id: 2 -->

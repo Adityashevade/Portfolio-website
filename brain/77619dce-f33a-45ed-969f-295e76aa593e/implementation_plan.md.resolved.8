@@ -1,0 +1,22 @@
+# Dependencies Page Logos Implementation Plan
+
+## Goal Description
+Add proper logos/icons to the Language, Package Manager, and Type dropdowns in the Dependencies page ([dependencies-page-client.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/dependencies/dependencies-page-client.tsx)) to improve visual identification.
+
+## Proposed Changes
+
+### Dependencies Page
+#### [MODIFY] [dependencies-page-client.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/dependencies/dependencies-page-client.tsx)
+-   **Imports**: Import icons from `react-icons/si`, `react-icons/fa`, `react-icons/di` and `lucide-react`.
+    -   React Icons: `SiRuby`, `SiJavascript`, `SiGo`, `FaJava`, `SiRust`, `SiPython`, `SiTypescript`, `SiCsharp`, `SiCplusplus`, `SiPhp`, `SiSwift`, `SiKotlin`, `SiNpm`, `SiPypi`, `SiRubygems`, `SiApachemaven`, `SiGradle`, `SiComposer`, `SiNuget`, `SiYarn`, `SiPnpm`.
+    -   Lucide: `Book`, `Layers`, `Hammer`, `Box`.
+-   **Helper Function**: Create `getIconForValue(category, value)` to return the appropriate icon.
+-   **Dropdown Updates**:
+    -   Update `SelectContent` -> `SelectItem` rendering for Language, Manager, and Type to render the icon alongside the text.
+
+## Verification Plan
+### Manual Verification
+-   Check the "Dependencies" page in the browser.
+-   Open the Language dropdown and verify logos for Ruby, Javascript, Go, Java, Rust, Python, etc.
+-   Open the Package Manager dropdown and verify logos.
+-   Open the Type dropdown and verify logos.

@@ -1,0 +1,31 @@
+# Walkthrough: Git Scans UX & Performance Polish
+
+I have completed the requested enhancements to the Git Scans page, focusing on a premium "Unique Experience" and improved performance.
+
+## Changes Implemented
+
+### 1. 3D Tilt & Spotlight (Expanded)
+- **Universal 3D Effect**: The dynamic "magnetic" tilt and spotlight effect is now applied to **all** interactive elements:
+    -   **Project Cards**: Main project grid items.
+    -   **Stats Cards**: The glossy boxes showing project/repo counts.
+    -   **Action Buttons**: Refresh, Scan Selected, and Add Project buttons ([TiltContainer](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/components/GitProjectsList.tsx#131-202)).
+    -   **Filter Pills**: The provider toggles (GitHub/GitLab/Azure).
+- **Smooth Interaction**: Each element has a simplified version of the tilt physics for a cohesive, premium feel without visual clutter.
+
+### 2. Performance Optimization
+- **Memoized Components**: The project card rendering logic was extracted into a separate, memoized component (`ProjectCard`).
+- **Reduced Re-renders**: This prevents the entire grid from re-rendering when you interact with unrelated elements (like the drawer or other cards), significantly improving responsiveness on large lists.
+
+### 3. User Friendliness (Phase 2)
+- **Provider Filters**: Added quick-filter pills (All, GitHub, GitLab, Azure) next to the search bar.
+- **Skeleton Loading**: Replaced the generic spinner with shimmering card skeletons that match the grid layout, reducing layout shift.
+
+### 4. Code Quality & Repair
+- **Refactoring**: Cleaned up [GitProjectsList.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/components/GitProjectsList.tsx) by moving helper functions and sub-components to the module scope.
+- **Robustness**: Re-implemented [normalizeRepository](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/git-scans/git-scans-page-client.tsx#38-86) to handle data inconsistencies across different Git providers (Azure vs GitHub vs GitLab) more reliably.
+
+## Verification Steps
+1.  **Hover Everywhere**: Move your mouse over project cards, the refresh button, or the provider filters. All boxes should now subtly tilt towards your cursor with a spotlight effect.
+2.  **Filter Repositories**: Click the "GitHub" or "Azure" pills to instantly filter the list.
+3.  **Refresh Data**: Click the refresh button and observe the new skeleton loading animation.
+4.  **Check Performance**: Use the "Select All" or individual bulk selection checkboxes; the UI should remain snappy.

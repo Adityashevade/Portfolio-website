@@ -1,0 +1,16 @@
+# Implementation Plan - Fix Projects Click Error
+
+## Problem
+User reports an error when clicking on "projects" in the Mission Control page.
+
+## Investigation
+1.  **Analyze Code**: details of `handleProjectClick` or similar in [GitProjectsList.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/components/GitProjectsList.tsx) and how it's passed/used in [scan/page.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/scan/page.tsx).
+2.  **Hypothesis**:
+    *   `fullProjectName` was used in `SheetContent` scope where it is not defined. It should be `drawerProject`.
+    *   Project name splitting logic `split('-', 2)` was unsafe for names with hyphens.
+
+## Changes
+*   [x] [GitProjectsList.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/components/GitProjectsList.tsx): Replaced `fullProjectName` with `drawerProject` in the drawer. Use safer parsing for project names.
+
+## Verification
+*   Manual code verification shows the variable name is now correct and corresponds to the state variable `drawerProject`.

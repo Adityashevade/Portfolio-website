@@ -1,0 +1,48 @@
+# Frontend Implementation Plan - Final Phase
+
+## Goal Description
+Complete the remaining features for the Audit Log and Alias List pages as verified against the [FRONTEND_PLAN.md](file:///c:/SCOUTNEW/scout_db/FRONTEND_PLAN.md). This includes advanced filtering, row expansion with diffs, visual timelines, and enhanced edit/grouping capabilities for aliases.
+
+## User Review Required
+> [!NOTE]
+> We will continue using client-side simulation for pagination where backend support is mock-based, but build the UI components to be backend-ready (pageCount, manualPagination).
+
+## Proposed Changes
+
+### Shared Components
+#### [MODIFY] [DataTable.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/components/shared/DataTable.tsx)
+- Add props: `pageCount`, `onPaginationChange`, `renderSubComponent` (for row expansion).
+- Enhance pagination UI: "Page X of Y", jump to page.
+- Add Row Expansion logic.
+
+#### [NEW] [Timeline.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/components/shared/Timeline.tsx)
+- Visual vertical timeline component for audit history.
+
+### Audit Log (Page 2)
+#### [MODIFY] [AuditLog.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/pages/Audit/AuditLog.tsx)
+- **Filters**: Add `MultiSelect` (or simple distinct selects) for Actions.
+- **Row Expansion**: Use [DataTable](file:///c:/SCOUTNEW/scout_db/frontend/src/components/shared/DataTable.tsx#34-155) expansion to show [JsonDiffViewer](file:///c:/SCOUTNEW/scout_db/frontend/src/components/shared/JsonDiffViewer.tsx#9-38).
+- **Pagination**: Enable standard pagination.
+
+#### [MODIFY] [AuditHistory.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/pages/Audit/AuditHistory.tsx)
+- Integrate `Timeline` component.
+
+### Package Aliases (Page 3)
+#### [MODIFY] [AliasList.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/pages/Aliases/AliasList.tsx)
+- **Edit Action**: Open [AliasForm](file:///c:/SCOUTNEW/scout_db/frontend/src/pages/Aliases/AliasForm.tsx#32-138) in sheet with data pre-filled.
+- **Grouping**: Toggle state to group By Ecosystem (using TanStack grouping or visual grouping).
+- **Pagination**: Verify limits and navigation.
+
+## Verification Plan
+### Automated Tests
+- `npm run build`
+
+### Manual Verification
+1. **Audit Log**:
+   - Check filters works.
+   - Click row -> verify Diff Viewer appears.
+2. **Audit History**:
+   - Check visual timeline rendering.
+3. **Alias List**:
+   - Click "Edit" -> Verify Form loads data -> Save -> Verify Update.
+   - Click "Group by Ecosystem" -> Verify visual separation.

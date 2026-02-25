@@ -1,0 +1,24 @@
+# Implement Side Drawers for Details
+
+## Goal
+Replace navigation to detail pages with a 90% width side drawer on "Dependencies" and "Vulnerabilities" pages, rendering the exact same detail component inside the drawer.
+
+## Proposed Changes
+
+### 1. [client/src/pages/scoutCustomPages/_detail-pages/dependency/dependency-detail-client.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/_detail-pages/dependency/dependency-detail-client.tsx)
+- Update [DependencyDetailClientProps](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/_detail-pages/dependency/dependency-detail-client.tsx#41-44) to include optional `onBack: () => void`.
+- Update component to use `onBack` if provided, otherwise `window.history.back()`.
+
+### 2. [client/src/pages/scoutCustomPages/dependencies/dependencies-page-client.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/dependencies/dependencies-page-client.tsx)
+- Import [DependencyDetailClient](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/_detail-pages/dependency/dependency-detail-client.tsx#107-2396).
+- Add state `selectedDependencyId` and `isDrawerOpen`.
+- Find `Link` or `onClick` that navigates to details.
+- Replace with handler that sets `selectedDependencyId` and opens drawer.
+- Render `Sheet` component (90% width) containing [DependencyDetailClient](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/_detail-pages/dependency/dependency-detail-client.tsx#107-2396).
+
+### 3. [client/src/pages/scoutCustomPages/vulnerabilities/vulnerabilities-page-client.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/vulnerabilities/vulnerabilities-page-client.tsx)
+- Import [VulnerabilityDetailClient](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/_detail-pages/vulnerability/vulnerability-detail-client.tsx#290-945).
+- Add state `selectedVulnerabilityId` and `isDrawerOpen`.
+- Find `Link` or `onClick` that navigates to details.
+- Replace with handler that sets `selectedVulnerabilityId` and opens drawer.
+- Render `Sheet` component (90% width) containing [VulnerabilityDetailClient](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/_detail-pages/vulnerability/vulnerability-detail-client.tsx#290-945).

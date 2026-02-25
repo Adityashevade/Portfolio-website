@@ -1,0 +1,32 @@
+# Add Ecosystem Icons & Standardize Colors
+
+## Goal
+Add icons to the "All Ecosystems" dropdown in [AliasList.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/pages/Aliases/AliasList.tsx) and update existing icons in [AuditLog.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/pages/Audit/AuditLog.tsx) and [OverrideList.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/pages/Overrides/OverrideList.tsx) to be monochrome (removing specific color classes like `text-green-500`) as per user request to "make all logos in black color".
+
+## User Review Required
+None.
+
+## Proposed Changes
+
+### Frontend
+#### [MODIFY] [AliasList.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/pages/Aliases/AliasList.tsx)
+- Import icons from `lucide-react`:
+    - `Box` (for npm)
+    - `Terminal` (for pypi)
+    - `Codepen` (for maven) - *using generic Box/Package if specific not found*
+    - `Globe` (for All Ecosystems)
+    - `FileCode` (for golang)
+- Update `SelectItem` in the Ecosystem [Select](file:///c:/SCOUTNEW/scout_db/frontend/src/components/shared/DataTable.tsx#52-63) component to include these icons.
+- Ensure no color classes are used (monochrome).
+
+#### [MODIFY] [AuditLog.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/pages/Audit/AuditLog.tsx)
+- Remove `text-green-500`, `text-blue-500`, `text-red-500` classes from icons.
+- Check if `text-black` or `text-foreground` is appropriate. *Decision: Remove color class to inherit text color (usually white/grey in dark mode, black in light mode). If user explicitly meant "black ink" on dark mode, it would be unreadable, so "monochrome" is the safe interpretation.*
+
+#### [MODIFY] [OverrideList.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/pages/Overrides/OverrideList.tsx)
+- Remove `text-green-500` classes from icons.
+
+## Verification Plan
+### Manual Verification
+- Check "Package Aliases" page: Dropdown should have icons.
+- Check "Audit Log" & "Overrides": Icons should be present but monochrome (not colored).

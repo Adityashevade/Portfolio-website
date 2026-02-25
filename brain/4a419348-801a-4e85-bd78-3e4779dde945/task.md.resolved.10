@@ -1,0 +1,18 @@
+# Task: Fix npm errors and set up environment
+
+- [x] Analyze [package.json](file:///C:/SCOUTNEW/package.json) files to understand project structure <!-- id: 0 -->
+- [x] Install dependencies in the correct directory (`frontend`) <!-- id: 1 -->
+- [x] Create [package.json](file:///C:/SCOUTNEW/package.json) in root `C:\SCOUTNEW` to forward commands <!-- id: 3 -->
+- [x] Configure `vite.config.ts` with a specific port if needed <!-- id: 4 -->
+- [x] Verify the application runs from root <!-- id: 5 -->
+- [x] Start the backend server on port 8005 <!-- id: 6 -->
+- [/] Verify frontend-backend communication <!-- id: 7 -->
+
+# Task: UI Improvements - Sidebar and Navbar
+
+- [x] Analyze current Sidebar and Navbar implementation (Layout.tsx) <!-- id: 8 -->
+- [x] Design improvements for Navbar (reduce size, improve aesthetics) <!-- id: 9 -->
+- [x] Design improvements for Sidebar (styling, spacing) <!-- id: 10 -->
+- [/] Implement Navbar changes <!-- id: 11 -->
+- [/] Implement Sidebar changes <!-- id: 12 -->
+- [ ] Verify UI responsiveness and aesthetics <!-- id: 13 -->

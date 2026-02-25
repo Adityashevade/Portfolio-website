@@ -1,0 +1,25 @@
+# Portfolio Website Project
+
+- [x] Initialize project with Vite (React + Tailwind)
+- [x] Install and configure shadcn/ui
+- [x] Receive and parse resume content
+- [x] Design and implement the layout (Black/Grey theme)
+    - [x] Create Hero and Navigation
+    - [x] Implement Skills and Experience sections
+    - [x] Build Projects gallery with links
+    - [x] Add Education and Training sections
+- [x] Design and implement the layout (Original Black/Grey)
+- [x] Aesthetic Redesign (High-Contrast Black/Yellow)
+    - [x] Update typography and color palette in index.css
+    - [x] Redesign Hero section with large typography and tags
+    - [x] Implement service/skill cards with arrow icons
+    - [x] Create featured projects section with new card style
+    - [x] Add testimonials/reviews section
+- [x] Netflix-Style Redesign (Black/Red)
+- [x] Logo Redesign (Netflix 'A')
+- [x] Multi-Page Site & Transitions
+- [/] Public Deployment
+    - [/] Prepare deployment instructions [/]
+    - [ ] Create/Update README.md for deployment [ ]
+    - [ ] Assist with GitHub push (if possible/needed) [ ]
+- [x] Verification and Polish

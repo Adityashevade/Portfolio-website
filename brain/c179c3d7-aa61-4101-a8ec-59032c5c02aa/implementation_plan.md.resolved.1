@@ -1,0 +1,26 @@
+# Implementation Plan - Align Projects Heading
+
+## Goal Description
+Align the "Projects" heading in [GitProjectsList](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/components/GitProjectsList.tsx#84-972) with the "Git Repository Scans" heading in `Git Scans` page. The "Git Repository Scans" heading is offset by an icon (~48px) + gap (~16px), so "Projects" needs similar offset.
+
+## Proposed Changes
+### Git Projects List Component
+#### [MODIFY] [GitProjectsList.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/components/GitProjectsList.tsx)
+- Add a spacer or left margin to the "Projects" heading container.
+- Alternatively, add an invisible icon of the same size (`w-12 h-12`) to the left of "Projects" to ensure perfect alignment.
+- Since it's used in [scan/page.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/scan/page.tsx) as well, I need to check if that page also has a header icon. If so, a universal change is fine.
+    - [scan/page.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/scan/page.tsx) (just checked): It seems [ScanPage](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/scan/page.tsx#79-3089) uses [GitProjectsList](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/components/GitProjectsList.tsx#84-972) inside it.
+    - If [ScanPage](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/scan/page.tsx#79-3089) ALSO has a header logo, the spacer is correct for both.
+    - If [ScanPage](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/scan/page.tsx#79-3089) does NOT have a header logo, the spacer might look weird.
+
+## Logic Check
+- [git-scans-page-client.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/git-scans/git-scans-page-client.tsx): Has header with icon. Alignment needed.
+- [scan/page.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/scan/page.tsx): I need to verify its header structure.
+
+## Plan Detail
+1.  Check [scan/page.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/scan/page.tsx) header.
+2.  If both have icons, add a matching placeholder icon to [GitProjectsList.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/components/GitProjectsList.tsx).
+3.  If [scan/page.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/scan/page.tsx) doesn't have an icon, I might need to pass a prop `withHeaderOffset` to [GitProjectsList](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/components/GitProjectsList.tsx#84-972) or similar.
+
+## Verification
+- Visual check on Git Scans page.

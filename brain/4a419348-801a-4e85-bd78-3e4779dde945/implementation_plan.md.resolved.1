@@ -1,0 +1,30 @@
+# Implementation Plan - UI Improvements
+
+The goal is to refine the application's layout, specifically addressing the user's feedback that the navbar is "very large" and the sidebar needs improvement.
+
+## User Review Required
+
+> [!NOTE]
+> The Navbar height will be significantly reduced from `96px` (h-24) to `64px` (h-16).
+
+## Proposed Changes
+
+### Frontend Components
+
+#### [MODIFY] [Layout.tsx](file:///C:/SCOUTNEW/scout_db/frontend/src/components/Layout.tsx)
+- **Navbar (`header`)**:
+    - Reduce height to `h-16`.
+    - Adjust padding and alignment of title and subtitles.
+    - Make the "System Online" pill more subtle.
+- **Sidebar (`aside`)**:
+    - Refine the hover transition to be smoother.
+    - optimize spacing (`gap`) to look less sparse if needed.
+    - Enhance the visual polish (gradients, borders) for a more "premium" feel.
+
+## Verification Plan
+
+### Manual Verification
+- Run the app (`npm run dev`) and visually inspect:
+    - Navbar height and content alignment.
+    - Sidebar hover behavior and aesthetics.
+    - Responsiveness on smaller screens (though the current layout is desktop-focused).

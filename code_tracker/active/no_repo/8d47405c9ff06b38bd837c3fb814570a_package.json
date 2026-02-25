@@ -1,0 +1,11 @@
+Š{
+    "name": "scout-root",
+    "private": true,
+    "scripts": {
+        "dev": "npm run dev --prefix scout_db/frontend",
+        "build": "npm run build --prefix scout_db/frontend",
+        "preview": "npm run preview --prefix scout_db/frontend",
+        "lint": "npm run lint --prefix scout_db/frontend",
+        "install:frontend": "npm install --prefix scout_db/frontend"
+    }
+}Š*cascade082 file:///C:/SCOUTNEW/package.json

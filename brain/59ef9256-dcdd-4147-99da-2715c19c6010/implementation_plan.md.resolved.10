@@ -1,0 +1,25 @@
+# Dashboard Implementation Plan
+
+## Goal
+Create a "Mission Control" Dashboard as the new landing page to provide high-level insights into the security posture.
+
+## Proposed Changes
+
+### New Component
+#### [NEW] [Dashboard.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/pages/Dashboard/Dashboard.tsx)
+- **Stats Cards**: Display counts for Total Overrides, Active Aliases, and Total Audit Entries.
+- **Recent Activity**: A list showing the most recent 5 entries from the Audit Log.
+- **Quick Links**: Buttons to easily navigate to key actions.
+
+### Routing
+#### [MODIFY] [App.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/App.tsx)
+- Change root route `/` to render `Dashboard` instead of redirecting to `/overrides`.
+
+#### [MODIFY] [Layout.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/components/Layout.tsx)
+- Add "Dashboard" to the sidebar navigation.
+
+## Verification Plan
+### Manual Verification
+- **Navigation**: Verify clicking "Dashboard" in sidebar works.
+- **Data Loading**: Ensure stats and activity feed load correctly.
+- **Responsive**: Check layout on different screen sizes.

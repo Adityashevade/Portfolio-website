@@ -1,0 +1,27 @@
+# Mission Control Header Enhancement
+
+## Goal
+Add visual flare (animation) and audio feedback (sound effect) to the "Mission Control" header in [Layout.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/components/Layout.tsx).
+
+## User Review Required
+None.
+
+## Proposed Changes
+
+### Frontend
+#### [MODIFY] [Layout.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/components/Layout.tsx)
+- Import `motion` from `framer-motion`.
+- Create a `playSound` utility function using `window.AudioContext` for a simple "tech" blip.
+- Wrap the `<h1>` header in `motion.h1`.
+- Add `whileHover` properties:
+    - Scale: 1.02
+    - Text Shadow: Glow effect
+    - Color transition
+- Add `onMouseEnter` to trigger `playSound`.
+
+## Verification Plan
+### Manual Verification
+- Run `npm run dev`.
+- Hover over "Mission Control".
+- Verify it scales/glows.
+- Verify a short sound plays.

@@ -1,0 +1,28 @@
+# Styles Hover Buttons on SBOM Cards
+
+The user wants to improve the hover interaction on "Uploaded SBOM" cards in Mission Control (specifically referencing "client1.0", "client2.0", "image_lab"). The buttons for "Analyze" and "DETAILS" (currently "View") should be styled as proper buttons and not be clipped.
+
+## User Review Required
+> [!NOTE]
+> I am assuming "DETAILS" refers to the "View" button found in [uploaded-sbom-scan-page-client.tsx](file:///C:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/uploaded-sbom-scan/uploaded-sbom-scan-page-client.tsx). I will rename "View" to "DETAILS".
+
+## Proposed Changes
+
+### Client
+#### [MODIFY] [uploaded-sbom-scan-page-client.tsx](file:///C:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/uploaded-sbom-scan/uploaded-sbom-scan-page-client.tsx)
+- locate the card rendering loop (grid view).
+- Modify the hover action bar section.
+- Rename "View" button text to "DETAILS".
+- Update button variants from `outline` to `default` or customized filled style on hover (e.g., `bg-indigo-600 text-white` for Details, `bg-amber-500` for Analyze).
+- Adjust the `absolute bottom-0` positioning/padding or remove `overflow-hidden` (if safe) or adjust margins to prevent clipping.
+
+## Verification Plan
+### Automated Tests
+- None.
+
+### Manual Verification
+- Navigate to the "Uploaded SBOM" page/section.
+- Hover over the cards ("client1.0", etc.).
+- Verify "DETAILS" and "Analyze" buttons appear.
+- Verify they look like buttons (filled/prominent).
+- Verify they are not clipped.

@@ -1,0 +1,28 @@
+# Walkthrough: Right-Side Drawers for Mission Control
+
+## Changes Summary
+Replaced the modal dialogs for "Add New Project" and "Upload SBOM" with modern right-side drawers (Sheets) to improve the user experience and visual consistency.
+
+## Verification Steps
+
+### 1. Verification of "Add New Project" Drawer
+1.  Navigate to the **Mission Control** / **Scan** page.
+2.  Click the **Add New Project** card/button.
+3.  **Expectation**: A drawer should slide in from the right side of the screen.
+4.  Enter a Project Name and click **Next**.
+5.  **Expectation**: The drawer connects to the next step (Select Git Provider).
+6.  Select a Git Provider (e.g., GitHub).
+7.  **Expectation**: The "Connect to Git Provider" view effectively replaces the current view or opens a new drawer (depending on exact flow, but should feel seamless).
+
+### 2. Verification of "Upload SBOM File" Drawer
+1.  Click the **Upload SBOM File** card/button.
+2.  **Expectation**: A drawer should slide in from the right side.
+3.  Fill in the form (Project Group, Target Name, etc.).
+4.  Upload a dummy [.json](file:///C:/Users/Aditya/SCOUT_Frontend/package.json) file.
+5.  Click **Upload**.
+6.  **Expectation**: The upload should proceed (or mock succeed) and the drawer should close or show success.
+
+### 3. Visual Checks
+-   Ensure the drawers have appropriate width (`max-w-[600px]` or `500px`).
+-   Verify the close button (X) works.
+-   Verify the backdrop (overlay) dims the background.

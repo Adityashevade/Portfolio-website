@@ -1,0 +1,6 @@
+{
+  "artifactType": "ARTIFACT_TYPE_IMPLEMENTATION_PLAN",
+  "summary": "Updated implementation plan to include scraping from Cricinfo. Added Scraper/Extractor components.",
+  "updatedAt": "2026-01-25T04:25:28.448499900Z",
+  "version": "1"
+}

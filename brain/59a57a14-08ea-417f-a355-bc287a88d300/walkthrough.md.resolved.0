@@ -1,0 +1,48 @@
+# Walkthrough: Fixed TypeScript Error in OverrideList.tsx
+
+I have successfully resolved the TypeScript type mismatch in [OverrideList.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/pages/Overrides/OverrideList.tsx). The issue was caused by an incorrectly named prop being passed to the [DataTable](file:///c:/SCOUTNEW/scout_db/frontend/src/components/shared/DataTable.tsx#38-222) component and missing type definitions for the API response.
+
+## Changes Made
+
+### 1. Renamed Prop in [DataTable](file:///c:/SCOUTNEW/scout_db/frontend/src/components/shared/DataTable.tsx#38-222)
+The [DataTable](file:///c:/SCOUTNEW/scout_db/frontend/src/components/shared/DataTable.tsx#38-222) component expects `onRowSelectionChange` for handling row selection updates, but it was being passed [setRowSelection](file:///c:/SCOUTNEW/scout_db/frontend/src/components/shared/DataTable.tsx#52-63).
+
+```diff
+-<DataTable
+-    columns={columns}
+-    data={data?.items || []}
+-    rowSelection={rowSelection}
+-    setRowSelection={setRowSelection}
+-/>
++<DataTable
++    columns={columns}
++    data={data?.items || []}
++    rowSelection={rowSelection}
++    onRowSelectionChange={setRowSelection}
++/>
+```
+
+### 2. Improved Type Safety
+I added explicit types to `useState` and `useQuery` to resolve potential issues with the `items` property and improve overall code robustness.
+
+-   **Row Selection State**: Added `RowSelectionState` type from `@tanstack/react-table`.
+-   **API Query**: Defined the expected response structure `{ items: any[], total: number }` for `useQuery`.
+-   **Safe Access**: Used optional chaining when accessing `data.items` to prevent "undefined" errors.
+
+```typescript
+const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
+
+const { data, isLoading, error } = useQuery<{ items: any[], total: number }>({
+    // ...
+});
+```
+
+## Verification Results
+
+### Automated Tests
+- Ran `npx tsc --noEmit` in the frontend directory.
+- **Result**: `Exit code: 0`. No TypeScript errors were found in the codebase.
+
+### Manual Verification
+- The [DataTable](file:///c:/SCOUTNEW/scout_db/frontend/src/components/shared/DataTable.tsx#38-222) component now correctly receives the row selection handler.
+- The `items` property is safely accessed, preventing runtime errors if the data is not yet loaded.

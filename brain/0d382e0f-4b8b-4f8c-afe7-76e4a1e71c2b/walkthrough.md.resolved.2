@@ -1,0 +1,44 @@
+# Walkthrough: Unified API and Fixed Data Formats
+
+I have resolved the network errors and UI loading issues by unifying the backend services and correcting data format discrepancies.
+
+## Changes Made
+
+### Backend Unification
+- Integrated `scout_registry` routes into the main `scout_db` backend.
+- Both `scout_db` and `scout_registry` MongoDB connections are now established during the application lifespan.
+- All package-related APIs are now accessible on the same port (8000) as the vulnerability APIs, matching the frontend's configuration.
+
+### Data Format Correction
+- Updated the following endpoints to return a paginated object `{ "items": [...], "total": ... }` instead of a raw list:
+    - `GET /api/v1/aliases`
+    - `GET /api/v1/overrides`
+    - `GET /api/v1/audit`
+    - `GET /api/v1/vulnerabilities`
+    - `GET /api/v1/kev`
+- This ensures that UI components (like the Dashboard counters and DataTables) can correctly parse the response data.
+
+### Connectivity and Proxy
+- Updated [frontend/src/lib/api.ts](file:///c:/SCOUTNEW/scout_db/frontend/src/lib/api.ts) to use a relative `baseURL` (`/api/v1`).
+- This ensures the frontend correctly uses the Vite proxy defined in [vite.config.ts](file:///c:/SCOUTNEW/scout_db/frontend/vite.config.ts), avoiding CORS issues and ensuring a stable connection to the backend.
+
+### Final Verification Results
+
+- **Backend Health**: Verified `http://127.0.0.1:8000/health` returns 200.
+- **Data Loading**: Verified `GET /api/v1/aliases` returns the correct `{ items, total }` format.
+- **Frontend Compatibility**: Confirmed that Dashboard, Aliases, and Audit Log pages are all using the unified `api` instance and handling the new data format.
+
+## Unified Startup (Recommended)
+
+I have added a new script to the root [package.json](file:///c:/SCOUTNEW/package.json) that starts both the frontend and backend with a single command. This ensures they are both running and using the correct environments.
+
+**To start everything at once, run:**
+```bash
+npm run dev:full
+```
+
+## Troubleshooting
+
+> [!IMPORTANT]
+> If you see a `ModuleNotFoundError` for `fastapi`, it means you are using the wrong virtual environment. The backend dependencies are located in `scout_db/.venv`.
+> The `npm run dev:full` command automatically uses the correct path to this environment.

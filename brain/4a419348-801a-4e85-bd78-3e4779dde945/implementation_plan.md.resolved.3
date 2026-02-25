@@ -1,0 +1,39 @@
+# Implementation Plan - Light Mode Refinement
+
+The goal is to perfect the light mode design by ensuring high contrast, proper colors, and removing all "grey/dark" artifacts that make the UI look muddy.
+
+## User Review Required
+
+> [!NOTE]
+> The light mode background will be changed to a very subtle off-white (`#f8f9fa` or similar) to allow the pure white cards to stand out, matching the reference image style.
+
+## Proposed Changes
+
+### Configuration
+
+#### [MODIFY] [index.css](file:///C:/SCOUTNEW/scout_db/frontend/src/index.css)
+- **Light Theme Background**: Change `--background` to `210 40% 98%` (Alice Blue/Off-white) or `0 0% 98%` (Zinc 50).
+- **Cards**: Ensure `--card` is `0 0% 100%` (Pure White).
+- **Shadows**: Tune shadows to be soft and diffuse.
+
+### Components
+
+#### [MODIFY] [Dashboard.tsx](file:///C:/SCOUTNEW/scout_db/frontend/src/pages/Dashboard/Dashboard.tsx)
+- **Remove Hardcoded Colors**: Replace all instances of `text-white`, `bg-white/x` with semantic classes:
+    - `text-white` -> `text-foreground`
+    - `bg-white/5` -> `bg-accent` or `bg-muted`
+- **Colored Text**: Update specific colors to be readable in light mode:
+    - `text-purple-400` -> `text-purple-600 dark:text-purple-400`
+    - `text-pink-400` -> `text-pink-600 dark:text-pink-400`
+    - `text-emerald-400` -> `text-emerald-600 dark:text-emerald-400`
+- **Charts/Bars**: Update chart bar backgrounds to be visible in light mode.
+
+## Verification Plan
+
+### Manual Verification
+- Check Dashboard in Light Mode:
+    - Cards should be white on a light grey background.
+    - Text should be dark and legible.
+    - Icons should have colored backgrounds.
+- Check Dashboard in Dark Mode:
+    - Should remain unchanged (dark deep space look).

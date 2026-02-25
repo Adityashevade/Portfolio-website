@@ -1,0 +1,6 @@
+{
+  "artifactType": "ARTIFACT_TYPE_IMPLEMENTATION_PLAN",
+  "summary": "Added a plan to fix the SBOM detail page back button navigation.",
+  "updatedAt": "2026-01-30T11:14:36.798457100Z",
+  "version": "1"
+}

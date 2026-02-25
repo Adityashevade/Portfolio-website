@@ -1,0 +1,44 @@
+# UI Optimization: Refinement of Override Creation Form
+
+This plan details the UI changes to the "Create Override" drawer to minimize scrolling, maximize space usage, and improve the logical layout for non-technical users.
+
+## User Review Required
+
+> [!IMPORTANT]
+> - The drawer width will be kept at 90% (standard wide drawer), but the internal form width will increase from `max-w-2xl` to `max-w-5xl` to use the extra space.
+> - The layout of severity and packages will shift from a single vertical stack to a side-by-side grid.
+
+## Proposed Changes
+
+### [Frontend] React App
+
+#### [MODIFY] [OverrideList.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/pages/Overrides/OverrideList.tsx)
+- Remove `SheetHeader` (redundant title and description) to minimize vertical scrolling.
+
+#### [MODIFY] [OverrideForm.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/pages/Overrides/OverrideForm.tsx)
+- Increase container width from `max-w-2xl` to `max-w-5xl`.
+
+#### [MODIFY] [VulnerabilityEditForm.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/components/VulnerabilityEditForm.tsx)
+- **State Management**:
+    - Add `isAffectedCollapsed` and `isRefsCollapsed` boolean states.
+- **Layout Restructuring**:
+    - Keep Summary and Details at the top.
+    - Create a two-column grid.
+    - **Left Column (Severity)**:
+        - `CVSS V3 Score`: Compact number input.
+        - `Severity Level`: Compact text input (centered, mono font) to match CVSS score styling and save space.
+    - **Right Column (Affected Packages)**:
+        - Collapsible paginated list.
+- **Collapsible References**:
+    - Wrap references in a collapsible container.
+
+#### [MODIFY] [VulnerabilitySearch.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/components/VulnerabilitySearch.tsx)
+- Ensure the suggestion dropdown stays relative to the wider input. (No code change expected, but will verify width).
+
+## Verification Plan
+
+### Manual Verification
+1.  **Width Check**: Open "Create Override" drawer and verify it looks balanced on wide screens.
+2.  **Layout Check**: Verify Severity is on the left and Affected Packages are on the right in the edit form.
+3.  **Collapse Check**: Test collapsing/expanding "Affected Packages" and "References".
+4.  **Usability**: Confirm scrolling is significantly reduced for typical vulnerabilities (e.g., ones with 2-3 packages).

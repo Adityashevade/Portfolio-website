@@ -1,0 +1,51 @@
+# Implementation Plan - Vulnerability Suggestions
+
+The goal is to use [scout_db.vulnerabilities.json](file:///C:/SCOUTNEW/scout_db.vulnerabilities.json) as a local database to provide autocomplete suggestions and detailed information when creating vulnerability overrides.
+
+## User Review Required
+
+> [!NOTE]
+> The backend will load the entire JSON file into memory on startup. Given the file size (~43MB), this is acceptable for a local application but would need optimization (database) for larger datasets or multi-user environments.
+
+## Proposed Changes
+
+### Backend (Python/FastAPI)
+
+#### [NEW] [scout_db/services/vulnerability_db.py](file:///C:/SCOUTNEW/scout_db/services/vulnerability_db.py)
+- Create a service class `VulnerabilityDB` that:
+    - Loads [scout_db.vulnerabilities.json](file:///C:/SCOUTNEW/scout_db.vulnerabilities.json) on initialization.
+    - Provides a `search(query: str, limit: int = 10)` method to filter vulnerabilities by ID, CVE ID, or Package Name.
+    - Provides a `get_by_id(cve_id: str)` method.
+
+#### [NEW] [scout_db/routers/vulnerabilities.py](file:///C:/SCOUTNEW/scout_db/routers/vulnerabilities.py)
+- Expose `GET /api/vulnerabilities/search?q=...` endpoint using `VulnerabilityDB`.
+
+#### [MODIFY] [scout_db/main.py](file:///C:/SCOUTNEW/scout_db/main.py)
+- Include the new `vulnerabilities` router.
+- Initialize `VulnerabilityDB` on startup.
+
+### Frontend (React)
+
+#### [NEW] [src/components/VulnerabilitySearch.tsx](file:///C:/SCOUTNEW/scout_db/frontend/src/components/VulnerabilitySearch.tsx)
+- Create a reusable Combobox component (using Headless UI or existing implementation) that:
+    - Takes `onSelect` callback.
+    - Fetches suggestions from `/api/vulnerabilities/search` as the user types.
+    - Displays ID, Package, and Summary in the dropdown.
+
+#### [MODIFY] [OverrideForm.tsx](file:///C:/SCOUTNEW/scout_db/frontend/src/pages/Overrides/OverrideForm.tsx)
+- Replace the simple text input for "Vulnerability ID" with `VulnerabilitySearch`.
+- When a vulnerability is selected:
+    - Auto-fill the ID field.
+    - Display a "Vulnerability Details" card showing Summary, Details, Affected Versions, etc.
+
+## Verification Plan
+
+### Manual Verification
+- **Backend Start**: Verify backend starts without errors and loads the JSON.
+- **API Test**: `curl http://localhost:8000/api/vulnerabilities/search?q=CVE-2024` and verify results.
+- **Frontend UI**:
+    - Go to "Create Override".
+    - Type "InvokeAI" or a CVE ID.
+    - Verify suggestions appear.
+    - Select a suggestion.
+    - Verify details card appears with correct info from JSON.

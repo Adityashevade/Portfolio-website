@@ -1,0 +1,22 @@
+# Implementation Plan - Style Git Scans Search Button
+
+## Goal Description
+The user wants the "Search Project" button on the Git Scans page to have a specific hover effect: "border line of that button to glow popup when hovered i want it to be in color of light pink".
+
+## Proposed Changes
+### Git Scans Page
+#### [MODIFY] [git-scans-page-client.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/git-scans/git-scans-page-client.tsx)
+- locate the "Search Project" button.
+- Add a custom class or Tailwind utility to achieve the "light pink glow popup" effect on hover.
+- Light pink color: `#FFB6C1`.
+- Glow effect: `box-shadow`.
+- Tailwind class suggestion: `hover:border-pink-300 hover:shadow-[0_0_15px_rgba(255,182,193,0.7)] hover:text-pink-300` or similar. I will verify if I can specific hex codes or if I should use standard Tailwind colors. Tailwind allows arbitrary values like `hover:shadow-[0_0_10px_#FFB6C1]`.
+
+## Verification Plan
+### Automated Tests
+- None available for UI styling.
+
+### Manual Verification
+1.  Navigate to `Git Scans` page.
+2.  Hover over the "Search Project" button.
+3.  Verify the border glows light pink.

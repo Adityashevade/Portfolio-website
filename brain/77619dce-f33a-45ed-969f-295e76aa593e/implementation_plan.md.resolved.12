@@ -1,0 +1,32 @@
+# Integration Sources Drawer Implementation Plan
+
+## Goal
+Replace the "Git Provider" and "Upload SBOM" modals with 90% width side drawers as requested by the user.
+
+## Changes
+### [MODIFY] [integration-sources-page-client.tsx](file:///c:/Users/Aditya/SCOUT_Frontend/client/src/pages/scoutCustomPages/integration-sources/integration-sources-page-client.tsx)
+
+1.  **Imports**: Add `Sheet` related imports.
+    ```typescript
+    import {
+      Sheet,
+      SheetContent,
+      SheetHeader,
+      SheetTitle,
+      SheetDescription,
+    } from "@/components/ui/sheet"
+    ```
+
+2.  **Git Provider Drawer**:
+    -   Replace `Dialog` for `showGitModal` with `Sheet`.
+    -   Apply 90% width class: `className="sm:max-w-[90vw] w-[90vw] sm:w-[90vw] !max-w-[90vw] overflow-y-auto"`
+    -   Move `DialogHeader` content to `SheetHeader`.
+    -   Move `DialogFooter` content (check if Sheet has a footer or just put it at the bottom of the content).
+
+3.  **Upload SBOM Drawer**:
+    -   Replace `Dialog` for `showSbomModal` with `Sheet`.
+    -   Apply 90% width class.
+
+## Verification
+-   Manual verification by user (since I cannot see the UI).
+-   Build verification.

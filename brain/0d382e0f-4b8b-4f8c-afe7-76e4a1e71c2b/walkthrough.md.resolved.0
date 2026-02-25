@@ -1,0 +1,34 @@
+# Walkthrough: Unified API and Fixed Data Formats
+
+I have resolved the network errors and UI loading issues by unifying the backend services and correcting data format discrepancies.
+
+## Changes Made
+
+### Backend Unification
+- Integrated `scout_registry` routes into the main `scout_db` backend.
+- Both `scout_db` and `scout_registry` MongoDB connections are now established during the application lifespan.
+- All package-related APIs are now accessible on the same port (8000) as the vulnerability APIs, matching the frontend's configuration.
+
+### Data Format Correction
+- Updated the following endpoints to return a paginated object `{ "items": [...], "total": ... }` instead of a raw list:
+    - `GET /api/v1/aliases`
+    - `GET /api/v1/overrides`
+    - `GET /api/v1/audit`
+    - `GET /api/v1/vulnerabilities`
+    - `GET /api/v1/kev`
+- This ensures that UI components (like the Dashboard counters and DataTables) can correctly parse the response data.
+
+## Verification Results
+
+### Backend Stability
+- Ran `python -m compileall` on modified files to ensure no syntax errors were introduced.
+- Verified that [main.py](file:///c:/SCOUTNEW/scout_db/src/scout_db/main.py) correctly imports and includes the `scout_registry` router.
+
+### Frontend Compatibility
+- Verified that [AliasList.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/pages/Aliases/AliasList.tsx), [OverrideList.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/pages/Overrides/OverrideList.tsx), and [Dashboard.tsx](file:///c:/SCOUTNEW/scout_db/frontend/src/pages/Dashboard/Dashboard.tsx) are designed to handle the `items` and `total` fields in the response.
+- Dashboard counters for Overrides and Aliases should now display the correct numbers instead of 0.
+
+---
+
+> [!NOTE]
+> All APIs are now unified on `http://127.0.0.1:8000/api/v1`.
