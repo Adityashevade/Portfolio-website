@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { motion } from "framer-motion"
-import { Link } from "react-router-dom"
+
 
 const Home = () => {
     const projects = [
@@ -45,7 +45,7 @@ const Home = () => {
                     </p>
                     <div className="flex gap-4 pt-6">
                         <Button size="lg" className="bg-white text-black hover:bg-gray-200 px-10 py-7 text-lg font-bold rounded-sm" asChild>
-                            <Link to="/contact">Contact Me</Link>
+                            <a href="#certificates">Certificates</a>
                         </Button>
                         <Button size="lg" variant="outline" className="bg-gray-500/30 border-none text-white hover:bg-gray-500/50 px-10 py-7 text-lg font-bold rounded-sm" asChild>
                             <a href="#projects">View Projects</a>
@@ -145,6 +145,54 @@ const Home = () => {
                             <div className="space-y-1">
                                 <h3 className="text-lg font-bold uppercase tracking-tight">Artificial Intelligence</h3>
                                 <p className="text-xs text-gray-500 uppercase font-bold tracking-widest">Boston Institute of Analytics</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Certificates & Achievements */}
+                <section id="certificates" className="space-y-10">
+                    <h2 className="text-sm font-bold tracking-[0.3em] text-gray-500 uppercase">/ Certificates & Achievements</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                        {/* Certificate 1: Infosys */}
+                        <div className="group relative rounded-sm overflow-hidden bg-[#141414] border border-gray-900 netflix-card-shadow aspect-[4/3]">
+                            <img
+                                src="/certificates/infosys.jpg"
+                                alt="Infosys Decision Trees using Python Certificate"
+                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                onError={(e) => { e.currentTarget.src = 'https://placehold.co/800x600/141414/666666?text=Infosys+Certificate' }}
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                                <h3 className="text-lg font-bold truncate">Decision Trees using Python</h3>
+                                <p className="text-sm text-primary font-bold uppercase tracking-widest">Infosys Springboard</p>
+                            </div>
+                        </div>
+
+                        {/* Certificate 2: BIA AI */}
+                        <div className="group relative rounded-sm overflow-hidden bg-[#141414] border border-gray-900 netflix-card-shadow aspect-[4/3]">
+                            <img
+                                src="/certificates/bia-ai.jpg"
+                                alt="BIA Artificial Intelligence Certificate"
+                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                onError={(e) => { e.currentTarget.src = 'https://placehold.co/800x600/141414/666666?text=BIA+AI+Certificate' }}
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                                <h3 className="text-lg font-bold truncate">Artificial Intelligence Classroom</h3>
+                                <p className="text-sm text-primary font-bold uppercase tracking-widest">Boston Institute of Analytics</p>
+                            </div>
+                        </div>
+
+                        {/* Certificate 3: BIA DS */}
+                        <div className="group relative rounded-sm overflow-hidden bg-[#141414] border border-gray-900 netflix-card-shadow aspect-[4/3]">
+                            <img
+                                src="/certificates/bia-ds.jpg"
+                                alt="BIA Data Science Certificate"
+                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                onError={(e) => { e.currentTarget.src = 'https://placehold.co/800x600/141414/666666?text=BIA+DS+Certificate' }}
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                                <h3 className="text-lg font-bold truncate">Data Science Classroom</h3>
+                                <p className="text-sm text-primary font-bold uppercase tracking-widest">Boston Institute of Analytics</p>
                             </div>
                         </div>
                     </div>

@@ -15,7 +15,7 @@ function Navigation() {
       </Link>
       <div className="hidden md:flex space-x-6 text-sm font-medium text-gray-300 uppercase tracking-widest">
         <Link to="/" className="hover:text-white transition-colors">Home</Link>
-        <Link to="/contact" className="hover:text-white transition-colors">Contact</Link>
+        <a href="/#certificates" className="hover:text-white transition-colors">Certificates & Achievements</a>
       </div>
       <div className="flex items-center gap-4">
         <a href="https://github.com/Adityashevade" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white"><Github size={20} /></a>
@@ -33,7 +33,7 @@ function Footer() {
         <p className="text-sm text-gray-500 max-w-xs font-medium">Building intelligent solutions with precision and passion.</p>
       </div>
       <div className="flex gap-8 text-gray-500 uppercase text-[10px] font-bold tracking-[0.3em]">
-        <Link to="/contact" className="hover:text-white transition-colors">Contact</Link>
+        <a href="/#certificates" className="hover:text-white transition-colors">Certificates & Achievements</a>
         <a href="https://linkedin.com/in/aditya-shevade-1a440b23b" className="hover:text-white transition-colors">LinkedIn</a>
       </div>
       <p className="text-[10px] text-gray-700 font-bold tracking-widest">
