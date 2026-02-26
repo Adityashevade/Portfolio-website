@@ -1,4 +1,4 @@
-import { ArrowRight, GraduationCap, Code, BookOpen, Dribbble, Waves, HeartPulse, TableProperties } from "lucide-react"
+import { ArrowRight, GraduationCap, Code, BookOpen, Dribbble, Waves, HeartPulse, TableProperties, Download } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
@@ -43,9 +43,14 @@ const Home = () => {
                     <p className="text-xl md:text-2xl text-gray-300 max-w-2xl leading-relaxed">
                         Data Science Enthusiast • Passionate ML and GenAI Engineer
                     </p>
-                    <div className="flex gap-4 pt-6">
+                    <div className="flex gap-4 pt-6 flex-wrap">
                         <Button size="lg" className="bg-white text-black hover:bg-gray-200 px-10 py-7 text-lg font-bold rounded-sm" asChild>
                             <a href="#certificates">Certificates</a>
+                        </Button>
+                        <Button size="lg" variant="outline" className="bg-gray-500/30 border-none text-white hover:bg-gray-500/50 px-10 py-7 text-lg font-bold rounded-sm gap-2" asChild>
+                            <a href="/resume.pdf" download="Aditya_Shevade_Resume.pdf">
+                                <Download size={20} /> Resume
+                            </a>
                         </Button>
                         <Button size="lg" variant="outline" className="bg-gray-500/30 border-none text-white hover:bg-gray-500/50 px-10 py-7 text-lg font-bold rounded-sm" asChild>
                             <a href="#projects">View Projects</a>

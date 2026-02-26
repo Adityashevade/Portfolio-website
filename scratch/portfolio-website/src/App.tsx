@@ -15,6 +15,7 @@ function Navigation() {
         <a href="/#certificates" className="hover:text-white transition-colors">Certificates & Achievements</a>
         <a href="/#hobbies" className="hover:text-white transition-colors">Hobbies</a>
         <a href="/#social-work" className="hover:text-white transition-colors">Social Work</a>
+        <a href="/resume.pdf" target="_blank" className="hover:text-white transition-colors">Resume</a>
       </div>
       <div className="flex items-center gap-4">
         <a href="https://github.com/Adityashevade" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white"><Github size={20} /></a>
