@@ -2,20 +2,19 @@ import { BrowserRouter as Router, Routes, Route, useLocation, Link } from "react
 import { AnimatePresence } from "framer-motion"
 import Home from "./pages/Home"
 import Contact from "./pages/Contact"
-import { Github, Linkedin } from "lucide-react"
+import { Github, Linkedin, Server } from "lucide-react"
 
 function Navigation() {
   return (
     <nav className="fixed top-0 w-full z-50 bg-gradient-to-b from-black to-transparent py-4 px-6 md:px-12 flex items-center justify-between">
       <Link to="/" className="group cursor-pointer">
-        <svg width="40" height="50" viewBox="0 0 40 50" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform group-hover:scale-110 duration-300">
-          <path d="M20 5L35 45H28L20 22L12 45H5L20 5Z" fill="#E50914" className="drop-shadow-[0_0_10px_rgba(229,9,20,0.5)]" />
-          <path d="M14 30H26V36H14V30Z" fill="#E50914" />
-        </svg>
+        <Server size={32} className="text-[#E50914] transition-transform group-hover:scale-110 duration-300 drop-shadow-[0_0_10px_rgba(229,9,20,0.5)]" />
       </Link>
       <div className="hidden md:flex space-x-6 text-sm font-medium text-gray-300 uppercase tracking-widest">
         <Link to="/" className="hover:text-white transition-colors">Home</Link>
         <a href="/#certificates" className="hover:text-white transition-colors">Certificates & Achievements</a>
+        <a href="/#hobbies" className="hover:text-white transition-colors">Hobbies</a>
+        <a href="/#social-work" className="hover:text-white transition-colors">Social Work</a>
       </div>
       <div className="flex items-center gap-4">
         <a href="https://github.com/Adityashevade" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white"><Github size={20} /></a>
