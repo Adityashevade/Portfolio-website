@@ -41,7 +41,7 @@ const Home = () => {
                         ADITYA SHEVADE
                     </h1>
                     <p className="text-xl md:text-2xl text-gray-300 max-w-2xl leading-relaxed">
-                        Data Science Enthusiast • Machine Learning Engineer • Generative AI Specialist
+                        Data Science Enthusiast • Passionate ML and GenAI Engineer
                     </p>
                     <div className="flex gap-4 pt-6">
                         <Button size="lg" className="bg-white text-black hover:bg-gray-200 px-10 py-7 text-lg font-bold rounded-sm" asChild>
