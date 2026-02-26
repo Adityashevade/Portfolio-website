@@ -1,4 +1,4 @@
-import { ArrowRight, GraduationCap, Code, BookOpen } from "lucide-react"
+import { ArrowRight, GraduationCap, Code, BookOpen, Dribbble, Waves, HeartPulse, TableProperties } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
@@ -197,6 +197,37 @@ const Home = () => {
                         </div>
                     </div>
                 </section>
+                {/* Hobbies & Social Work Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
+                    {/* Hobbies */}
+                    <section id="hobbies" className="space-y-10">
+                        <h2 className="text-sm font-bold tracking-[0.3em] text-gray-500 uppercase">/ Hobbies</h2>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div className="flex flex-col items-center justify-center p-8 bg-[#141414] border border-gray-900 rounded-sm netflix-card-shadow group">
+                                <Dribbble size={40} className="mb-4 text-gray-500 group-hover:text-primary transition-colors" />
+                                <h3 className="text-lg font-bold">Basketball</h3>
+                            </div>
+                            <div className="flex flex-col items-center justify-center p-8 bg-[#141414] border border-gray-900 rounded-sm netflix-card-shadow group">
+                                <TableProperties size={40} className="mb-4 text-gray-500 group-hover:text-primary transition-colors" />
+                                <h3 className="text-lg font-bold">Table Tennis</h3>
+                            </div>
+                            <div className="flex flex-col items-center justify-center p-8 bg-[#141414] border border-gray-900 rounded-sm netflix-card-shadow group sm:col-span-2">
+                                <Waves size={40} className="mb-4 text-gray-500 group-hover:text-primary transition-colors" />
+                                <h3 className="text-lg font-bold">Swimming</h3>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Social Work */}
+                    <section id="social-work" className="space-y-10">
+                        <h2 className="text-sm font-bold tracking-[0.3em] text-gray-500 uppercase">/ Social Work</h2>
+                        <div className="flex flex-col items-center justify-center h-full min-h-[200px] p-8 bg-[#141414] border border-gray-900 rounded-sm netflix-card-shadow group">
+                            <HeartPulse size={56} className="mb-6 text-gray-500 group-hover:text-primary transition-colors" />
+                            <h3 className="text-2xl font-bold mb-2">Blood Donation</h3>
+                            <p className="text-sm text-gray-400 text-center">Active contributor to local blood donation drives.</p>
+                        </div>
+                    </section>
+                </div>
             </main>
         </motion.div>
     )
