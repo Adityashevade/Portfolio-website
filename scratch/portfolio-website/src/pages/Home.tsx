@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import { motion } from "framer-motion"
+import { Link } from "react-router-dom"
 
 
 const Home = () => {
@@ -54,6 +55,9 @@ const Home = () => {
                         </Button>
                         <Button size="lg" variant="outline" className="bg-gray-500/30 border-none text-white hover:bg-gray-500/50 px-10 py-7 text-lg font-bold rounded-sm" asChild>
                             <a href="#projects">View Projects</a>
+                        </Button>
+                        <Button size="lg" variant="outline" className="bg-gray-500/30 border-none text-white hover:bg-gray-500/50 px-10 py-7 text-lg font-bold rounded-sm" asChild>
+                            <Link to="/contact">Contact</Link>
                         </Button>
                     </div>
                 </div>
