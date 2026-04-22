@@ -220,7 +220,10 @@ const Home = () => {
                         </div>
 
                         {/* Certificate 4: Basketball */}
-                        <div className="group relative rounded-sm overflow-hidden bg-[#141414] border border-gray-900 netflix-card-shadow aspect-[4/3]">
+                        <div
+                            className="group relative rounded-sm overflow-hidden bg-[#141414] border border-gray-900 netflix-card-shadow aspect-[3/4] cursor-zoom-in mx-auto w-full max-w-[400px]"
+                            onClick={() => setZoomedImage('/certificates/basketball-certificate.jpeg')}
+                        >
                             <img
                                 src="/certificates/basketball-certificate.jpeg"
                                 alt="Basketball Certificate"
