@@ -2,11 +2,13 @@ import { ArrowRight, GraduationCap, Code, BookOpen, Dribbble, Waves, HeartPulse,
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import { Link } from "react-router-dom"
+import { useState } from "react"
 
 
 const Home = () => {
+    const [zoomedImage, setZoomedImage] = useState<string | null>(null)
     const projects = [
         {
             title: "Reader Segmentation",
@@ -251,7 +253,10 @@ const Home = () => {
                                 <p className="text-sm text-gray-400 text-center">Active contributor to local blood donation drives.</p>
                             </div>
                             <div className="grid grid-cols-2 gap-6">
-                                <div className="group relative rounded-sm overflow-hidden bg-[#141414] border border-gray-900 netflix-card-shadow aspect-[3/4]">
+                                <div
+                                    className="group relative rounded-sm overflow-hidden bg-[#141414] border border-gray-900 netflix-card-shadow aspect-[3/4] cursor-zoom-in"
+                                    onClick={() => setZoomedImage('/certificates/blood-donation-1.jpeg')}
+                                >
                                     <img
                                         src="/certificates/blood-donation-1.jpeg"
                                         alt="HDFC Bank Blood Donation"
@@ -262,7 +267,10 @@ const Home = () => {
                                         <p className="text-sm text-primary font-bold uppercase tracking-widest">13 Dec 2025</p>
                                     </div>
                                 </div>
-                                <div className="group relative rounded-sm overflow-hidden bg-[#141414] border border-gray-900 netflix-card-shadow aspect-[3/4]">
+                                <div
+                                    className="group relative rounded-sm overflow-hidden bg-[#141414] border border-gray-900 netflix-card-shadow aspect-[3/4] cursor-zoom-in"
+                                    onClick={() => setZoomedImage('/certificates/blood-donation-2.jpeg')}
+                                >
                                     <img
                                         src="/certificates/blood-donation-2.jpeg"
                                         alt="Breach Candy Hospital Blood Donation"
@@ -278,6 +286,28 @@ const Home = () => {
                     </section>
                 </div>
             </main>
+
+            {/* Zoom Modal */}
+            <AnimatePresence>
+                {zoomedImage && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        onClick={() => setZoomedImage(null)}
+                        className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 cursor-zoom-out backdrop-blur-sm"
+                    >
+                        <motion.img
+                            initial={{ scale: 0.9 }}
+                            animate={{ scale: 1 }}
+                            exit={{ scale: 0.9 }}
+                            src={zoomedImage}
+                            alt="Zoomed Certificate"
+                            className="max-w-full max-h-full object-contain rounded-md shadow-2xl"
+                        />
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </motion.div>
     )
 }
