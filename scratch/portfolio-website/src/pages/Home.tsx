@@ -21,6 +21,18 @@ const Home = () => {
             subtitle: "ML and Streamlit App",
             description: "This project uses customer information from a subscription-based service provider to predict churn (whether a customer will leave the service).",
             link: "https://github.com/Adityashevade/Machine-Learning"
+        },
+        {
+            title: "Customer Segmentation",
+            subtitle: "Machine Learning • Clustering",
+            description: "A machine learning project focused on grouping customers into distinct segments to analyze behavior and improve targeted strategies.",
+            link: "https://github.com/Adityashevade/segmentation"
+        },
+        {
+            title: "Fake Image Detection",
+            subtitle: "Deep Learning • CNN",
+            description: "A computer vision model utilizing Convolutional Neural Networks (CNN) to detect and classify fabricated or altered images.",
+            link: "https://github.com/Adityashevade/DeepLearning"
         }
     ]
 
