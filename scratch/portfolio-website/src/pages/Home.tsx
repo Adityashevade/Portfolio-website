@@ -57,7 +57,7 @@ const Home = () => {
                         ADITYA SHEVADE
                     </h1>
                     <p className="text-xl md:text-2xl text-gray-300 max-w-2xl leading-relaxed">
-                        Data Science Enthusiast • Passionate ML and GenAI Engineer
+                        Passionate about GenAI and ML engineering.
                     </p>
                     <div className="flex gap-4 pt-6 flex-wrap">
                         <Button size="lg" className="bg-white text-black hover:bg-gray-200 px-10 py-7 text-lg font-bold rounded-sm" asChild>
@@ -85,7 +85,7 @@ const Home = () => {
                 <section id="about" className="space-y-6 pt-10 border-t border-gray-900">
                     <h2 className="text-sm font-bold tracking-[0.3em] text-gray-500 uppercase">/ Summary</h2>
                     <p className="text-3xl md:text-5xl font-medium leading-[1.1] text-gray-200 max-w-5xl">
-                        A Computer Engineering graduate dedicated to designing AI-powered frameworks that transform data into intelligent, value-driven solutions.
+                        A Computer Engineering graduate dedicated to designing AI-powered frameworks that transform data into intelligent, value-driven solutions. Driven by a strong problem-solving approach using AI technologies and active as a researcher.
                     </p>
                 </section>
 
