@@ -204,6 +204,20 @@ const Home = () => {
                                 <p className="text-sm text-primary font-bold uppercase tracking-widest">Boston Institute of Analytics</p>
                             </div>
                         </div>
+
+                        {/* Certificate 4: Basketball */}
+                        <div className="group relative rounded-sm overflow-hidden bg-[#141414] border border-gray-900 netflix-card-shadow aspect-[4/3]">
+                            <img
+                                src="/certificates/basketball-certificate.jpeg"
+                                alt="Basketball Certificate"
+                                className="w-full h-full object-contain bg-[#111] transition-transform duration-500 group-hover:scale-110"
+                                onError={(e) => { e.currentTarget.src = 'https://placehold.co/800x600/141414/666666?text=Basketball+Certificate' }}
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 pointer-events-none">
+                                <h3 className="text-lg font-bold truncate">Basketball Recognition</h3>
+                                <p className="text-sm text-primary font-bold uppercase tracking-widest">Sports Achievement</p>
+                            </div>
+                        </div>
                     </div>
                 </section>
                 {/* Hobbies & Social Work Grid */}
@@ -230,10 +244,36 @@ const Home = () => {
                     {/* Social Work */}
                     <section id="social-work" className="space-y-10">
                         <h2 className="text-sm font-bold tracking-[0.3em] text-gray-500 uppercase">/ Social Work</h2>
-                        <div className="flex flex-col items-center justify-center h-full min-h-[200px] p-8 bg-[#141414] border border-gray-900 rounded-sm netflix-card-shadow group">
-                            <HeartPulse size={56} className="mb-6 text-gray-500 group-hover:text-primary transition-colors" />
-                            <h3 className="text-2xl font-bold mb-2">Blood Donation</h3>
-                            <p className="text-sm text-gray-400 text-center">Active contributor to local blood donation drives.</p>
+                        <div className="space-y-6">
+                            <div className="flex flex-col items-center justify-center min-h-[200px] p-8 bg-[#141414] border border-gray-900 rounded-sm netflix-card-shadow group">
+                                <HeartPulse size={56} className="mb-6 text-gray-500 group-hover:text-primary transition-colors" />
+                                <h3 className="text-2xl font-bold mb-2">Blood Donation</h3>
+                                <p className="text-sm text-gray-400 text-center">Active contributor to local blood donation drives.</p>
+                            </div>
+                            <div className="grid grid-cols-2 gap-6">
+                                <div className="group relative rounded-sm overflow-hidden bg-[#141414] border border-gray-900 netflix-card-shadow aspect-[3/4]">
+                                    <img
+                                        src="/certificates/blood-donation-1.jpeg"
+                                        alt="HDFC Bank Blood Donation"
+                                        className="w-full h-full object-contain bg-[#111] transition-transform duration-500 group-hover:scale-110"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 pointer-events-none">
+                                        <h3 className="text-lg font-bold truncate">HDFC Bank Camp</h3>
+                                        <p className="text-sm text-primary font-bold uppercase tracking-widest">13 Dec 2025</p>
+                                    </div>
+                                </div>
+                                <div className="group relative rounded-sm overflow-hidden bg-[#141414] border border-gray-900 netflix-card-shadow aspect-[3/4]">
+                                    <img
+                                        src="/certificates/blood-donation-2.jpeg"
+                                        alt="Breach Candy Hospital Blood Donation"
+                                        className="w-full h-full object-contain bg-[#111] transition-transform duration-500 group-hover:scale-110"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 pointer-events-none">
+                                        <h3 className="text-lg font-bold truncate whitespace-normal">Breach Candy Hospital</h3>
+                                        <p className="text-sm text-primary font-bold uppercase tracking-widest">13 Dec 2025</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </section>
                 </div>
