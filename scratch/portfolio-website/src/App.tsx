@@ -19,12 +19,17 @@ function SplashScreen({ onComplete }: { onComplete: () => void }) {
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5, ease: "easeInOut" }}
+      style={{ willChange: "opacity" }}
     >
       <motion.div
-        className="text-[#E50914] text-9xl md:text-[20rem] font-bold font-netflix drop-shadow-[0_0_50px_rgba(229,9,20,0.8)]"
+        className="text-[#E50914] text-9xl md:text-[20rem] font-bold font-netflix"
         initial={{ scale: 0.5, opacity: 0 }}
-        animate={{ scale: [0.5, 1, 1, 7], opacity: [0, 1, 1, 0] }}
-        transition={{ duration: 2.5, times: [0, 0.2, 0.6, 1], ease: "easeIn" }}
+        animate={{ scale: [0.5, 1, 1, 15], opacity: [0, 1, 1, 0] }}
+        transition={{ duration: 2.2, times: [0, 0.2, 0.6, 1], ease: "easeInOut" }}
+        style={{
+          willChange: "transform, opacity",
+          textShadow: "0 0 50px rgba(229,9,20,0.8)"
+        }}
       >
         A
       </motion.div>
@@ -34,9 +39,12 @@ function SplashScreen({ onComplete }: { onComplete: () => void }) {
 
 function Navigation() {
   return (
-    <nav className="fixed top-0 w-full z-50 bg-gradient-to-b from-black to-transparent py-4 px-6 md:px-12 flex items-center justify-between">
+    <nav className="fixed top-0 w-full z-50 bg-gradient-to-b from-black to-transparent py-4 px-6 md:px-12 flex items-center justify-between pointer-events-auto">
       <Link to="/" className="group cursor-pointer">
-        <span className="text-[#E50914] text-4xl md:text-5xl font-netflix font-bold inline-block transition-transform group-hover:scale-110 duration-300 drop-shadow-[0_0_15px_rgba(229,9,20,0.5)]">
+        <span
+          className="text-[#E50914] text-4xl md:text-5xl font-netflix font-bold inline-block transition-transform group-hover:scale-110 duration-300"
+          style={{ willChange: "transform", textShadow: "0 0 15px rgba(229,9,20,0.5)" }}
+        >
           A
         </span>
       </Link>

@@ -48,6 +48,7 @@ const Home = () => {
             animate={{ x: 0 }}
             exit={{ x: "-100%" }}
             transition={{ type: "spring", stiffness: 100, damping: 20 }}
+            style={{ willChange: "transform" }}
         >
             {/* Hero Section */}
             <header className="relative h-[80vh] flex flex-col justify-center px-6 md:px-12 lg:px-20 space-y-6 pt-20">
